@@ -1,6 +1,10 @@
+import Navbar from '@/components/ui/Navbar';
+import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+import Footer from '@/components/ui/Footer';
+import StoreProvider from '@/providers/StoreProvder';
+import PersistStoreProvider from '@/providers/PersistStoreProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +21,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <main className='mx-3 max-w-[1500px] 2xl:m-auto'>{children}</main>
+        <StoreProvider>
+          <PersistStoreProvider>
+            <Navbar />
+            <main className='mx-3 max-w-[1500px] 2xl:m-auto'>{children}</main>
+            <Footer />
+          </PersistStoreProvider>
+        </StoreProvider>
       </body>
     </html>
   );
