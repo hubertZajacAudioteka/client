@@ -4,48 +4,48 @@ enum RoleName {
   Client = 'client',
 }
 
-export type Role = {
+export interface Role {
   id: string;
   name: string;
-};
+}
 
-export type User = {
+export interface User {
   id: string;
   first_name: string;
   last_name: string;
   email: string;
   password?: string;
   role?: Role;
-};
+}
 
-export type UserFormRegister = {
+export interface UserFormRegister {
   first_name: string;
   last_name: string;
   email: string;
   password: string;
-};
+}
 
-export type UserFormLogin = {
+export interface UserFormLogin {
   email: string;
   password: string;
-};
+}
 
-export type UserFormAdd = {
+export interface UserFormAdd {
   first_name: string;
   last_name: string;
   email: string;
   password: string;
   roleName: RoleName;
-};
+}
 
-export type UserLoginResponse = {
+export interface UserLoginResponse {
   jwt: string;
   user: User;
-};
+}
 
-export type UserRegisterResponse = {
+export interface UserRegisterResponse {
   user: User;
-};
+}
 
 export interface UserLoginError {
   data: {

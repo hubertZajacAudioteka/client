@@ -1,7 +1,7 @@
 import { Product } from './products';
 import { User } from './user';
 
-export type Order = {
+export interface Order {
   id: string;
   created_at: string;
   value: number;
@@ -10,25 +10,25 @@ export type Order = {
     quantity: number;
     product: Omit<Product, 'category'>;
   }[];
-};
+}
 
-export type AddOrderValues = {
+export interface AddOrderValues {
   products: {
     id: string;
     quantity: number;
   }[];
-};
+}
 
-export type GetOrdersResponse = {
+export interface GetOrdersResponse {
   data: Order[];
   per_page: number;
   total: number;
-};
+}
 
-export type DeleteOrderResponse = {
+export interface DeleteOrderResponse {
   isSuccess: false;
-};
+}
 
-export type FetchClientResponse = {
+export interface FetchClientResponse {
   clientSecret: string;
-};
+}

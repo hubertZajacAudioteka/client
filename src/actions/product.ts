@@ -37,7 +37,6 @@ export const getProducts = async (
 export const getProduct = async (id: string) => {
   const jwt = cookies().get('jwt')?.value;
   try {
-    console.log('LOG', process.env.API_URL);
     const res = await fetch(`${process.env.API_URL}/products/${id}`, {
       headers: {
         'content-type': 'application/json',
@@ -60,7 +59,7 @@ export const getCategories = async () => {
         authorization: `Bearer ${jwt}`,
       },
     });
-    console.log('RES', res);
+    console.log('RES!!!!!!!!!!!!!!!!!', res);
     const data = await res.json();
     return data;
   } catch (error) {
