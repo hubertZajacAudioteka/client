@@ -59,7 +59,6 @@ export const getCategories = async () => {
         authorization: `Bearer ${jwt}`,
       },
     });
-    console.log('RES!!!!!!!!!!!!!!!!!', res);
     const data = await res.json();
     return data;
   } catch (error) {

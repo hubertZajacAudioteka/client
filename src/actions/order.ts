@@ -11,7 +11,6 @@ export const getOrders = async (page: number) => {
         authorization: `Bearer ${jwt}`,
       },
     });
-    console.log('ORDER', res);
     const data = await res.json();
     return data;
   } catch (error) {
