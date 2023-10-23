@@ -3,7 +3,7 @@ import {
   addProductToOrder,
   removeProductFromOrder,
 } from '@/store/slices/orderSlice';
-import { OrderedProduct } from '@/types/products';
+import { OrderedProduct } from '@/types/product';
 import Image from 'next/image';
 import React from 'react';
 import { BiSolidUpArrow, BiSolidDownArrow } from 'react-icons/bi';

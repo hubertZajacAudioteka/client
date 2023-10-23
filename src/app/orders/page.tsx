@@ -1,5 +1,6 @@
 import { getOrders } from '@/actions/order';
 import OrderAction from '@/components/order/OrderAction';
+import Pagination from '@/components/ui/Pagination';
 import { GetOrdersResponse } from '@/types/order';
 import { formatDate } from '@/utlis/formatDate';
 import Link from 'next/link';
@@ -47,6 +48,12 @@ const OrdersPage = async ({
           ))}
         </tbody>
       </table>
+      <Pagination
+        pageAmount={Math.ceil(
+          ordersData.meta.total / ordersData?.meta.per_page
+        )}
+        queryParams={{}}
+      />
     </div>
   );
 };

@@ -32,6 +32,7 @@ const Pagination = ({ pageAmount, queryParams }: PaginationProps) => {
               i + 1 === Number(page) ? '1px solid #000 ' : '1px solid #e5e5e5'
             }`,
           }}
+          className='p-2 mr-2 mt-2 w-10 h-10'
         >
           {i + 1}
         </button>

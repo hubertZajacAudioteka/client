@@ -1,5 +1,5 @@
 import { getProduct } from '@/actions/product';
-import { Product } from '@/types/products';
+import { Product } from '@/types/product';
 import Image from 'next/image';
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {

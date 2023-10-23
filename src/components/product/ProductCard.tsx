@@ -1,8 +1,9 @@
-import { Product } from '@/types/products';
+import { Product } from '@/types/product';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import ButtonBuy from './ButtonBuy';
+import ProductAction from './ProductAction';
 
 interface ProductCardProps {
   product: Product;
@@ -21,7 +22,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <h3 className='text-base font-bold mb-1'>
           ${product.price.toFixed(2)}
         </h3>
-        <h3 className='text-base font-bold mb-1'>{product.category.name}</h3>
+        <div className='flex justify-between items-center'>
+          <h3 className='text-base font-bold mb-1'>{product.category.name}</h3>
+          <ProductAction id={product.id} />
+        </div>
+
         <div>
           <Link
             className='text-blue-900 font-semibold'

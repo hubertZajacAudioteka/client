@@ -2,7 +2,8 @@ import { getCategories, getProducts } from '@/actions/product';
 import ProductCard from '@/components/product/ProductCard';
 import Pagination from '@/components/ui/Pagination';
 import Link from 'next/link';
-import { Category, GetProductsResponse } from '@/types/products';
+import { Category, GetProductsResponse } from '@/types/product';
+import ButtonAddNew from '@/components/product/ButtonAddNew';
 
 const ProductsPage = async ({
   searchParams,
@@ -26,6 +27,7 @@ const ProductsPage = async ({
     <>
       <div className='flex gap-4'>
         <div className=' flex flex-col fixed top-1/5 right-28'>
+          <ButtonAddNew />
           <h3 className='font-semibold text-large mb-3'>Category</h3>
           <Link
             className={`text-sm mb-2 capitalize ${

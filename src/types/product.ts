@@ -29,3 +29,11 @@ export interface OrderedProduct {
   category: Category;
   quantity: number;
 }
+
+export interface FormAddProduct {
+  title: string;
+  description: string;
+  price: number;
+  image: File | null;
+  category_id: string;
+}

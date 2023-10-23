@@ -1,4 +1,4 @@
-import { Product } from './products';
+import { Product } from './product';
 import { User } from './user';
 
 export interface Order {
@@ -21,8 +21,10 @@ export interface AddOrderValues {
 
 export interface GetOrdersResponse {
   data: Order[];
-  per_page: number;
-  total: number;
+  meta: {
+    per_page: number;
+    total: number;
+  };
 }
 
 export interface DeleteOrderResponse {

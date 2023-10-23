@@ -3,7 +3,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addProductToOrder } from '@/store/slices/orderSlice';
-import { Product } from '@/types/products';
+import { Product } from '@/types/product';
 
 type ButtonBuyProps = {
   product: Product;
