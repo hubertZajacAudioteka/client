@@ -15,15 +15,13 @@ type OrderedProductCardProps = {
 
 const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
   const dispatch = useDispatch();
+  const imageSrc = product.image.startsWith('images')
+    ? `http://127.0.0.1:8000/storage/${product.image}`
+    : product.image;
   return (
     <div className='flex gap-2'>
       <div className='w-1/3'>
-        <Image
-          src={product.image}
-          alt={product.title}
-          width={150}
-          height={150}
-        />
+        <Image src={imageSrc} alt={product.title} width={150} height={150} />
       </div>
       <div className='w-full'>
         <div className='mb-3'>

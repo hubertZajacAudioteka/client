@@ -37,3 +37,12 @@ export interface FormAddProduct {
   image: File | null;
   category_id: string;
 }
+
+export interface FormEditProduct {
+  id?: string;
+  title: string;
+  description: string;
+  price: number;
+  image?: File | null;
+  category_id: string;
+}

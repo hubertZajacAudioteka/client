@@ -10,6 +10,7 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    domains: ['127.0.0.1'],
   },
 };
 

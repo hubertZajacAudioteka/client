@@ -10,10 +10,13 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const imageSrc = product.image.startsWith('images')
+    ? `http://127.0.0.1:8000/storage/${product.image}`
+    : product.image;
   return (
     <div className='flex flex-col w-full mb-5'>
       <div className='relative h-40 mb-3'>
-        <Image src={product.image} alt={product.title} fill />
+        <Image src={imageSrc} alt={product.title} fill />
       </div>
       <div>
         <h4 className='font-semibold text-sm capitalize mb-1'>

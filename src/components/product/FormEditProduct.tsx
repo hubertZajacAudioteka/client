@@ -2,28 +2,34 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Category, FormAddProduct } from '@/types/product';
-import { useAddProductMutation } from '@/store/apis/productApi';
+import { Category, FormEditProduct, Product } from '@/types/product';
+import { useEditProductMutation } from '@/store/apis/productApi';
 
-interface FormAddProductProps {
+interface FormEditProductProps {
   categories: Category[];
+  product: Product;
 }
 
-const FormAddProduct = ({ categories }: FormAddProductProps) => {
-  const [addProduct, { error }] = useAddProductMutation();
-  const initialValues: FormAddProduct = {
-    title: '',
+const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
+  const [editProduct, { error }] = useEditProductMutation();
+  const initialValues: FormEditProduct = {
+    title: product.title,
     image: null as File | null,
-    description: '',
-    price: 0,
-    category_id: '',
+    description: product.description,
+    price: product.price,
+    category_id: product.category.id,
   };
 
   const validationSchema = yup.object().shape({
     title: yup.string().required().min(4).max(50),
     image: yup
       .mixed()
+      .nullable()
       .test('fileType', 'Only image files are allowed', (value) => {
+        if (value === null) {
+          return true;
+        }
+
         if (!(value instanceof File)) {
           return false;
         }
@@ -37,10 +43,13 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
         return allowedTypes.includes(value.type);
       })
       .test('fileSize', 'File size is too large', (value) => {
+        if (value === null) {
+          return true;
+        }
+
         if (!(value instanceof File)) {
           return false;
         }
-
         const maxSizeInBytes = 5 * 1024 * 1024;
         return value.size <= maxSizeInBytes;
       }),
@@ -57,11 +66,12 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
     category_id: yup.string().required(),
   });
 
-  const submitForm = async (values: FormAddProduct) => {
-    console.log(values);
-    const res = await addProduct(values);
-    console.log(res);
-    console.log(error);
+  const submitForm = async (values: FormEditProduct) => {
+    const res = await editProduct({
+      ...values,
+      image: values.image ?? null,
+      id: product.id,
+    });
   };
 
   return (
@@ -173,7 +183,7 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
               ))}
             </select>
             <button className='border-black border- border-solid '>
-              Add product
+              Edit product
             </button>
           </form>
         );
@@ -182,4 +192,4 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
   );
 };
 
-export default FormAddProduct;
+export default FormEditProduct;
