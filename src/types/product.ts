@@ -46,3 +46,7 @@ export interface FormEditProduct {
   image?: File | null;
   category_id: string;
 }
+
+export interface DeleteProductResponse {
+  isSuccess: boolean;
+}

@@ -1,4 +1,9 @@
-import { FormAddProduct, FormEditProduct, Product } from '@/types/product';
+import {
+  DeleteProductResponse,
+  FormAddProduct,
+  FormEditProduct,
+  Product,
+} from '@/types/product';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const productApi = createApi({
@@ -50,8 +55,20 @@ export const productApi = createApi({
         },
         invalidatesTags: ['Product'],
       }),
+      deleteProduct: builder.mutation<DeleteProductResponse, string>({
+        query: (id) => ({
+          url: `/products/${id}`,
+          method: 'DELETE',
+          credentials: 'include',
+        }),
+        invalidatesTags: ['Product'],
+      }),
     };
   },
 });
 
-export const { useAddProductMutation, useEditProductMutation } = productApi;
+export const {
+  useAddProductMutation,
+  useEditProductMutation,
+  useDeleteProductMutation,
+} = productApi;
