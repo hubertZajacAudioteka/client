@@ -1,6 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
+import { revalidatePath } from 'next/cache';
 
 export const getProducts = async (
   page: number,
@@ -60,6 +61,24 @@ export const getCategories = async () => {
       },
     });
     const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteProduct = async (id: string) => {
+  const jwt = cookies().get('jwt')?.value;
+  try {
+    const res = await fetch(`${process.env.API_URL}/products/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${jwt}`,
+      },
+    });
+    const data = await res.json();
+    revalidatePath('/products');
     return data;
   } catch (error) {
     console.log(error);

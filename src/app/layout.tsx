@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import Footer from '@/components/ui/Footer';
 import StoreProvider from '@/providers/StoreProvder';
 import PersistStoreProvider from '@/providers/PersistStoreProvider';
+import MessagePopup from '@/components/ui/MessagePopup';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <StoreProvider>
           <PersistStoreProvider>
             <Navbar />
+            <MessagePopup />
             <main className='mx-3 max-w-[1500px] 2xl:m-auto'>{children}</main>
             <Footer />
           </PersistStoreProvider>

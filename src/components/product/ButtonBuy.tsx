@@ -12,7 +12,7 @@ type ButtonBuyProps = {
 const ButtonBuy = ({ product }: ButtonBuyProps) => {
   const dispatch = useDispatch();
   return (
-    <button onClick={() => dispatch(addProductToOrder(product))}>
+    <button onClick={() => dispatch(addProductToOrder(product))} className=''>
       Add To Cart
     </button>
   );

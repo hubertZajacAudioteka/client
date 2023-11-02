@@ -1,16 +1,19 @@
 'use client';
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, FormikHelpers } from 'formik';
 import * as yup from 'yup';
 import { Category, FormAddProduct } from '@/types/product';
 import { useAddProductMutation } from '@/store/apis/productApi';
+import { useDispatch } from 'react-redux';
+import { openPopup } from '@/store/slices/popupSlice';
 
 interface FormAddProductProps {
   categories: Category[];
 }
 
 const FormAddProduct = ({ categories }: FormAddProductProps) => {
-  const [addProduct, { error }] = useAddProductMutation();
+  const [addProduct, { error, isSuccess }] = useAddProductMutation();
+  const dispatch = useDispatch();
   const initialValues: FormAddProduct = {
     title: '',
     image: null as File | null,
@@ -57,11 +60,15 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
     category_id: yup.string().required(),
   });
 
-  const submitForm = async (values: FormAddProduct) => {
-    console.log(values);
+  const submitForm = async (
+    values: FormAddProduct,
+    { resetForm }: FormikHelpers<FormAddProduct>
+  ) => {
     const res = await addProduct(values);
-    console.log(res);
-    console.log(error);
+    if ('data' in res) {
+      dispatch(openPopup('New product has been added!'));
+      resetForm();
+    }
   };
 
   return (
@@ -78,6 +85,7 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
           handleChange,
           handleSubmit,
           handleBlur,
+          resetForm,
         } = formik;
         return (
           <form onSubmit={handleSubmit} noValidate>

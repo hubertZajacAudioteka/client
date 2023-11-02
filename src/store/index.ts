@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { userApi } from './apis/userApi';
 import userReducer from './slices/userSlice';
 import orderReducer from './slices/orderSlice';
+import popupReducer from './slices/popupSlice';
 import {
   persistStore,
   persistReducer,
@@ -27,6 +28,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   order: orderReducer,
+  popup: popupReducer,
   [userApi.reducerPath]: userApi.reducer,
   [orderApi.reducerPath]: orderApi.reducer,
   [productApi.reducerPath]: productApi.reducer,
