@@ -5,19 +5,23 @@ import Image from 'next/image';
 
 const HomePage = async () => {
   const newestProducts: GetProductsResponse = await getProducts(1, 'newest');
+  console.log('NEWEST', newestProducts);
   return (
     <section>
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center max-w-[700px] mx-auto'>
         <Image src='/home.jpg' width={600} height={300} alt='home' />
       </div>
       <div>
-        <h2 className='text-center text-2xl font-bold mb-5'>
+        <h2 className='text-center text-2xl font-bold mb-5 lg:text-4xl'>
           Check our newest products
         </h2>
-        <div className='flex flex-col gap-5 items-center md:flex-row'>
+        <div className='flex flex-col gap-5 items-center md:flex-row md:justify-between md:items-start'>
           {newestProducts?.data.slice(0, 3).map((product) => (
-            <div key={product.id}>
-              <div className='h-60 border-red-100 border-2'>
+            <div
+              key={product.id}
+              className='w-full h- bg-base-100 shadow-xl rounded-xl xs:w-96'
+            >
+              <figure>
                 <Image
                   src={
                     product.image.startsWith('images')
@@ -27,19 +31,23 @@ const HomePage = async () => {
                   alt={product.title}
                   width={600}
                   height={500}
-                  className='w-full h-full'
+                  className='w-full h-60 bg-cover xs:w-96 rounded-tl-xl rounded-tr-xl'
                 />
-              </div>
-              <div>
-                <h2 className='text-lg font-bold capitalize'>
-                  {product.title}
-                </h2>
-                <div>
-                  <h4>{product.price}</h4>
-                  <h3>{product.category.name}</h3>
+              </figure>
+              <div className='px-3 py-5'>
+                <div className='flex justify-between items-center mb-3'>
+                  <h2 className='card-title text-lg font-bold capitalize'>
+                    {product.title}
+                  </h2>
+                  <div className='bg-lime-300 rounded-md p-2 text-slate-500'>
+                    {product.category.name}
+                  </div>
                 </div>
-                <p>{product.description}</p>
-                <ButtonBuy product={product} />
+                <p className='mb-3'>{product.description}</p>
+                <div className='card-actions flex justify-between'>
+                  <h4 className='font-bold'>{product.price.toFixed(2)} €</h4>
+                  <ButtonBuy product={product} />
+                </div>
               </div>
             </div>
           ))}
