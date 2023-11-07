@@ -6,12 +6,14 @@ import { Category, FormAddProduct } from '@/types/product';
 import { useAddProductMutation } from '@/store/apis/productApi';
 import { useDispatch } from 'react-redux';
 import { openPopup } from '@/store/slices/popupSlice';
+import { useRouter } from 'next/navigation';
 
 interface FormAddProductProps {
   categories: Category[];
 }
 
 const FormAddProduct = ({ categories }: FormAddProductProps) => {
+  const router = useRouter();
   const [addProduct, { error, isSuccess }] = useAddProductMutation();
   const dispatch = useDispatch();
   const initialValues: FormAddProduct = {
@@ -66,6 +68,7 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
   ) => {
     const res = await addProduct(values);
     if ('data' in res) {
+      router.refresh();
       dispatch(openPopup('New product has been added!'));
       resetForm();
     }

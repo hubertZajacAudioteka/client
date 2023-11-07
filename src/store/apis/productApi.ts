@@ -61,7 +61,7 @@ export const productApi = createApi({
           method: 'DELETE',
           credentials: 'include',
         }),
-        invalidatesTags: ['Product'],
+        invalidatesTags: () => ['Product'],
       }),
     };
   },

@@ -6,6 +6,7 @@ import Footer from '@/components/ui/Footer';
 import StoreProvider from '@/providers/StoreProvder';
 import PersistStoreProvider from '@/providers/PersistStoreProvider';
 import MessagePopup from '@/components/ui/MessagePopup';
+import ConfirmDialog from '@/components/ui/ConfirmDialog';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           <PersistStoreProvider>
             <Navbar />
             <MessagePopup />
+            <ConfirmDialog />
             <main className='mx-3 max-w-[1500px] 2xl:m-auto'>{children}</main>
             <Footer />
           </PersistStoreProvider>

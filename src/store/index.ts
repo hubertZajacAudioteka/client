@@ -4,6 +4,7 @@ import { userApi } from './apis/userApi';
 import userReducer from './slices/userSlice';
 import orderReducer from './slices/orderSlice';
 import popupReducer from './slices/popupSlice';
+import confirmDialogReducer from './slices/confirmDialogSlice';
 import {
   persistStore,
   persistReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   order: orderReducer,
   popup: popupReducer,
+  confirmDialog: confirmDialogReducer,
   [userApi.reducerPath]: userApi.reducer,
   [orderApi.reducerPath]: orderApi.reducer,
   [productApi.reducerPath]: productApi.reducer,

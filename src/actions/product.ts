@@ -2,6 +2,7 @@
 
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
+import { FormAddProduct } from '@/types/product';
 
 export const getProducts = async (
   page: number,
@@ -61,6 +62,24 @@ export const getCategories = async () => {
       },
     });
     const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addProduct = async (formAddProduct: FormAddProduct) => {
+  const jwt = cookies().get('jwt')?.value;
+  try {
+    const res = await fetch(`${process.env.API_URL}/products`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${jwt}`,
+      },
+    });
+    const data = await res.json();
+    revalidatePath('/products');
     return data;
   } catch (error) {
     console.log(error);

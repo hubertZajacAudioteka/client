@@ -2,23 +2,34 @@
 
 import React from 'react';
 import { RootState } from '@/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';
 import { useDeleteProductMutation } from '@/store/apis/productApi';
+import {
+  openConfirmDialog,
+  setDeleteFunction,
+  setIdRecordToDelete,
+} from '@/store/slices/confirmDialogSlice';
 
 interface ProductActionProps {
   id: string;
 }
 
 const ProductAction = ({ id }: ProductActionProps) => {
+  const dispatch = useDispatch();
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser);
   const [deleteProduct] = useDeleteProductMutation();
 
-  const removeProduct = async () => {
-    const res = await deleteProduct(id);
-    console.log(res);
+  const removeProduct = () => {
+    dispatch(setIdRecordToDelete(id));
+    dispatch(
+      setDeleteFunction({
+        deleteFunction: deleteProduct,
+      })
+    );
+    dispatch(openConfirmDialog());
   };
 
   const content =
