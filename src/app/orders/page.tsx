@@ -3,9 +3,6 @@ import OrderAction from '@/components/order/OrderAction';
 import Pagination from '@/components/ui/Pagination';
 import { GetOrdersResponse } from '@/types/order';
 import { formatDate } from '@/utlis/formatDate';
-import Link from 'next/link';
-import { BsFillEyeFill } from 'react-icons/bs';
-import { FaTrash } from 'react-icons/fa';
 
 const OrdersPage = async ({
   searchParams,

@@ -15,13 +15,18 @@ const ProductsPage = async ({
     direction?: string;
   };
 }) => {
-  const productsData: GetProductsResponse = await getProducts(
+  const productsDataPromise: Promise<GetProductsResponse> = getProducts(
     searchParams.page,
     searchParams.category ?? '',
     searchParams.sortParam ?? '',
     searchParams.direction ?? ''
   );
-  const categories: Category[] = await getCategories();
+  const categoriesPromise: Promise<Category[]> = getCategories();
+
+  const [productsData, categories] = await Promise.all([
+    productsDataPromise,
+    categoriesPromise,
+  ]);
 
   return (
     <>

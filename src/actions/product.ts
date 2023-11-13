@@ -1,8 +1,6 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
-import { FormAddProduct } from '@/types/product';
 
 export const getProducts = async (
   page: number,
@@ -11,8 +9,8 @@ export const getProducts = async (
   direction = ''
 ) => {
   const jwt = cookies().get('jwt')?.value;
-  let url = `${process.env.API_URL}/products?page=${page}`;
 
+  let url = `${process.env.API_URL}/products?page=${page}`;
   if (category) {
     url += `&category=${encodeURIComponent(category)}`;
   }
@@ -22,84 +20,45 @@ export const getProducts = async (
     )}&direction=${encodeURIComponent(direction)}`;
   }
 
-  try {
-    const res = await fetch(url, {
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${jwt}`,
-      },
-    });
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+  const res = await fetch(url, {
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${jwt}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch products');
   }
+  return res.json();
 };
 
 export const getProduct = async (id: string) => {
   const jwt = cookies().get('jwt')?.value;
-  try {
-    const res = await fetch(`${process.env.API_URL}/products/${id}`, {
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${jwt}`,
-      },
-    });
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+
+  const res = await fetch(`${process.env.API_URL}/products/${id}`, {
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${jwt}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch product');
   }
+  return res.json();
 };
 
 export const getCategories = async () => {
   const jwt = cookies().get('jwt')?.value;
-  try {
-    const res = await fetch(`${process.env.API_URL}/categories`, {
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${jwt}`,
-      },
-    });
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export const addProduct = async (formAddProduct: FormAddProduct) => {
-  const jwt = cookies().get('jwt')?.value;
-  try {
-    const res = await fetch(`${process.env.API_URL}/products`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${jwt}`,
-      },
-    });
-    const data = await res.json();
-    revalidatePath('/products');
-    return data;
-  } catch (error) {
-    console.log(error);
+  const res = await fetch(`${process.env.API_URL}/categories`, {
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${jwt}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch categories');
   }
-};
-
-export const deleteProduct = async (id: string) => {
-  const jwt = cookies().get('jwt')?.value;
-  try {
-    const res = await fetch(`${process.env.API_URL}/products/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${jwt}`,
-      },
-    });
-    const data = await res.json();
-    revalidatePath('/products');
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return res.json();
 };
