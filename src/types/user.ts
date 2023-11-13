@@ -61,3 +61,7 @@ export interface UserRegisterError {
     };
   };
 }
+
+export interface UserLogoutResponse {
+  message: string;
+}

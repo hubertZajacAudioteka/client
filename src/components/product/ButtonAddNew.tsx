@@ -10,11 +10,11 @@ const ButtonAddNew = () => {
   const content =
     loggedUser && loggedUser.role?.name !== 'client' ? (
       <Link href='products/new'>
-        <button className='flex items-center gap-1 mb-6'>
+        <button className='flex items-center gap-1 mb-6 text-sm bg-orange-400 px-2 py-1 rounded-md md:px-4 md:py-2 md:text-lg md:mx-auto'>
           <span>
-            <AiOutlinePlus />
+            <AiOutlinePlus size={12} />
           </span>
-          Add New Product
+          Add New
         </button>
       </Link>
     ) : null;

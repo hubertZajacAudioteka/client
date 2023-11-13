@@ -2,6 +2,7 @@ import {
   UserFormLogin,
   UserFormRegister,
   UserLoginResponse,
+  UserLogoutResponse,
   UserRegisterResponse,
 } from '@/types/user';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
@@ -30,8 +31,16 @@ export const userApi = createApi({
           credentials: 'include',
         }),
       }),
+      logout: builder.mutation<UserLogoutResponse, void>({
+        query: () => ({
+          url: '/logout',
+          method: 'POST',
+          credentials: 'include',
+        }),
+      }),
     };
   },
 });
 
-export const { useLoginMutation, useRegisterMutation } = userApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation } =
+  userApi;

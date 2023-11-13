@@ -28,7 +28,9 @@ export default function RootLayout({
             <Navbar />
             <MessagePopup />
             <ConfirmDialog />
-            <main className='mx-3 max-w-[1500px] 2xl:m-auto'>{children}</main>
+            <main className='mx-3 max-w-[1500px] pt-20 2xl:m-auto '>
+              {children}
+            </main>
             <Footer />
           </PersistStoreProvider>
         </StoreProvider>

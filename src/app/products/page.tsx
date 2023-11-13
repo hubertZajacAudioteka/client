@@ -26,20 +26,22 @@ const ProductsPage = async ({
   return (
     <>
       <div className='flex gap-4'>
-        <div className=' flex flex-col fixed top-1/5 right-28'>
+        <div className='flex flex-col fixed top-1/5 right-2 w-[28%] md:pl-10'>
           <ButtonAddNew />
-          <h3 className='font-semibold text-large mb-3'>Category</h3>
+          <h3 className='font-semibold text-large mb-3 md:text-xl md:mb-5 xl:text-2xl xl:font-bold'>
+            Category
+          </h3>
           <Link
             className={`text-sm mb-2 capitalize ${
               !searchParams.category && 'font-bold'
-            }`}
+            } md:text-base xl:text-lg`}
             href={`/products?page=1${
               searchParams.sortParam
                 ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.direction}`
                 : ''
             }`}
           >
-            All categories
+            All
           </Link>
           {categories.map((category) => (
             <Link
@@ -51,12 +53,14 @@ const ProductsPage = async ({
               }`}
               className={`text-sm mb-2 capitalize ${
                 searchParams.category === category.name && 'font-bold'
-              }`}
+              } md:text-base xl:text-lg`}
             >
               {category.name}
             </Link>
           ))}
-          <h3 className='font-semibold text-large mb-3'>Sort by</h3>
+          <h3 className='font-semibold text-large my-3 md:text-xl md:my-5 xl:text-2xl xl:font-bold'>
+            Sort by
+          </h3>
           <Link
             href={`/products?page=1${
               searchParams.category ? `&category=${searchParams.category}` : ''
@@ -65,7 +69,7 @@ const ProductsPage = async ({
               searchParams.sortParam === 'price' &&
               searchParams.direction === 'asc' &&
               'font-bold'
-            }`}
+            } md:text-base xl:text-lg`}
           >
             Price ascending
           </Link>
@@ -77,7 +81,7 @@ const ProductsPage = async ({
               searchParams.sortParam === 'price' &&
               searchParams.direction === 'desc' &&
               'font-bold'
-            }`}
+            } xl:text-lg`}
           >
             Price descending
           </Link>
@@ -89,7 +93,7 @@ const ProductsPage = async ({
               searchParams.sortParam === 'title' &&
               searchParams.direction === 'asc' &&
               'font-bold'
-            }`}
+            } xl:text-lg`}
           >
             Product name ascending
           </Link>
@@ -101,12 +105,12 @@ const ProductsPage = async ({
               searchParams.sortParam === 'title' &&
               searchParams.direction === 'desc' &&
               'font-bold'
-            }`}
+            } xl:text-lg`}
           >
             Product name descending
           </Link>
         </div>
-        <div>
+        <div className='w-2/3 md:grid grid-cols-2 gap-4 xl:grid-cols-3'>
           {productsData.data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

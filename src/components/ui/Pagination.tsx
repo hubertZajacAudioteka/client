@@ -21,7 +21,7 @@ const Pagination = ({ pageAmount, queryParams }: PaginationProps) => {
   }
 
   return (
-    <div>
+    <div className='text-center'>
       {[...Array(pageAmount)].map((el, i) => (
         <button
           key={i}

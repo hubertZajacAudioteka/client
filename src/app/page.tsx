@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const HomePage = async () => {
   const newestProducts: GetProductsResponse = await getProducts(1, 'newest');
-  console.log('NEWEST', newestProducts);
+
   return (
     <section>
       <div className='flex justify-center items-center max-w-[700px] mx-auto'>
@@ -21,30 +21,36 @@ const HomePage = async () => {
               key={product.id}
               className='w-full h- bg-base-100 shadow-xl rounded-xl xs:w-96'
             >
-              <figure>
-                <Image
-                  src={
-                    product.image.startsWith('images')
-                      ? `http://127.0.0.1:8000/storage/${product.image}`
-                      : product.image
-                  }
-                  alt={product.title}
-                  width={600}
-                  height={500}
-                  className='w-full h-60 bg-cover xs:w-96 rounded-tl-xl rounded-tr-xl'
-                />
-              </figure>
+              <Image
+                src={
+                  product.image.startsWith('images')
+                    ? `http://127.0.0.1:8000/storage/${product.image}`
+                    : product.image
+                }
+                alt={product.title}
+                width={600}
+                height={500}
+                className='w-full h-60 bg-cover xs:w-96 rounded-tl-xl rounded-tr-xl'
+              />
               <div className='px-3 py-5'>
                 <div className='flex justify-between items-center mb-3'>
                   <h2 className='card-title text-lg font-bold capitalize'>
                     {product.title}
                   </h2>
-                  <div className='bg-lime-300 rounded-md p-2 text-slate-500'>
-                    {product.category.name}
+                  <div
+                    className={`${
+                      product.category.name === 'newest'
+                        ? 'bg-blue-800'
+                        : product.category.name === 'regular'
+                        ? 'bg-purple-500'
+                        : 'bg-lime-400'
+                    }  rounded-md p-2 text-white`}
+                  >
+                    <p> {product.category.name}</p>
                   </div>
                 </div>
                 <p className='mb-3'>{product.description}</p>
-                <div className='card-actions flex justify-between'>
+                <div className='card-actions flex justify-between items-center'>
                   <h4 className='font-bold'>{product.price.toFixed(2)} €</h4>
                   <ButtonBuy product={product} />
                 </div>
