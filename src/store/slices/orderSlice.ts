@@ -1,12 +1,12 @@
-import { OrderedProduct, Product } from '@/types/product';
 import { createSlice } from '@reduxjs/toolkit';
+import { OrderedProduct, Product } from '@/types/product';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type OrderState = {
+interface OrderState {
   orderedProducts: OrderedProduct[];
   value: number;
   itemsQuantity: number;
-};
+}
 
 const initialState: OrderState = {
   orderedProducts: [],

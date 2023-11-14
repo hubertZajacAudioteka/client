@@ -1,9 +1,13 @@
 'use client';
+
 import React from 'react';
-import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Category, FormEditProduct, Product } from '@/types/product';
+import { useRouter } from 'next/navigation';
+import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { useEditProductMutation } from '@/store/apis/productApi';
+import { openPopup } from '@/store/slices/popupSlice';
+import { Category, FormEditProduct, Product } from '@/types/product';
 
 interface FormEditProductProps {
   categories: Category[];
@@ -11,7 +15,10 @@ interface FormEditProductProps {
 }
 
 const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
-  const [editProduct, { error }] = useEditProductMutation();
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [editProduct] = useEditProductMutation();
+
   const initialValues: FormEditProduct = {
     title: product.title,
     image: null as File | null,
@@ -72,6 +79,10 @@ const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
       image: values.image ?? null,
       id: product.id,
     });
+    if ('data' in res) {
+      router.refresh();
+      dispatch(openPopup('Product has been edited!'));
+    }
   };
 
   return (

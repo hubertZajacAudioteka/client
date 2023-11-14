@@ -1,10 +1,10 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   DeleteProductResponse,
   FormAddProduct,
   FormEditProduct,
   Product,
 } from '@/types/product';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const productApi = createApi({
   reducerPath: 'productApi',

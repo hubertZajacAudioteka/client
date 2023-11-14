@@ -1,12 +1,13 @@
 'use client';
-import React, { useState } from 'react';
-import { Formik } from 'formik';
+
+import React from 'react';
 import * as yup from 'yup';
-import { User, UserFormLogin, UserLoginError } from '@/types/user';
-import { useLoginMutation } from '@/store/apis/userApi';
 import { useDispatch } from 'react-redux';
-import { setLoggedUser } from '@/store/slices/userSlice';
+import { Formik } from 'formik';
 import Link from 'next/link';
+import { UserFormLogin } from '@/types/user';
+import { useLoginMutation } from '@/store/apis/userApi';
+import { setLoggedUser } from '@/store/slices/userSlice';
 
 const FormLogin = () => {
   const [login, { error, isError }] = useLoginMutation();

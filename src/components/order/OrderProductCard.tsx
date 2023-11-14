@@ -1,13 +1,14 @@
 'use client';
+
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import Image from 'next/image';
 import {
   addProductToOrder,
   removeProductFromOrder,
 } from '@/store/slices/orderSlice';
 import { OrderedProduct } from '@/types/product';
-import Image from 'next/image';
-import React from 'react';
 import { BiSolidUpArrow, BiSolidDownArrow } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
 
 type OrderedProductCardProps = {
   product: OrderedProduct;
@@ -18,6 +19,7 @@ const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
   const imageSrc = product.image.startsWith('images')
     ? `http://127.0.0.1:8000/storage/${product.image}`
     : product.image;
+
   return (
     <div className='flex gap-2'>
       <div className='w-1/3'>
@@ -58,7 +60,7 @@ const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
             <p>{product.quantity}</p>
           </div>
           <div>
-            <h4>{(product.price * product.quantity).toFixed(2)}$</h4>
+            <h4>{(product.price * product.quantity).toFixed(2)}€</h4>
           </div>
         </div>
       </div>

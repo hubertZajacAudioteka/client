@@ -1,12 +1,13 @@
 'use client';
+
 import React from 'react';
-import { Formik } from 'formik';
 import * as yup from 'yup';
-import { useLoginMutation, useRegisterMutation } from '@/store/apis/userApi';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
+import { Formik } from 'formik';
+import { useLoginMutation, useRegisterMutation } from '@/store/apis/userApi';
 import { setLoggedUser } from '@/store/slices/userSlice';
 import { UserFormRegister } from '../../types/user';
-import Link from 'next/link';
 
 const FormRegister = () => {
   const [register] = useRegisterMutation();

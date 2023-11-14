@@ -6,9 +6,9 @@ import { BsFillEyeFill } from 'react-icons/bs';
 import { FaTrash } from 'react-icons/fa';
 import { AiTwotoneEdit } from 'react-icons/ai';
 
-type OrderActionProps = {
+interface OrderActionProps {
   id: string;
-};
+}
 
 const OrderAction = ({ id }: OrderActionProps) => {
   return (

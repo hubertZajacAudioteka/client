@@ -2,9 +2,9 @@ import { User } from '@/types/user';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type UserState = {
+interface UserState {
   loggedUser: User | null;
-};
+}
 
 const initialState: UserState = {
   loggedUser: null,

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type PopupState = {
+interface PopupState {
   isOpen: boolean;
   message: string;
-};
+}
 
 const initialState: PopupState = {
   isOpen: false,

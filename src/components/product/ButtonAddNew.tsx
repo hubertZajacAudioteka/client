@@ -1,9 +1,10 @@
 'use client';
-import { RootState } from '@/store';
+
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { RootState } from '@/store';
 import Link from 'next/link';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const ButtonAddNew = () => {
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser);
@@ -18,6 +19,7 @@ const ButtonAddNew = () => {
         </button>
       </Link>
     ) : null;
+
   return content;
 };
 

@@ -1,14 +1,14 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { BiMenuAltLeft } from 'react-icons/bi';
-import { AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { logout } from '@/store/slices/userSlice';
 import { useLogoutMutation } from '@/store/apis/userApi';
-import { useRouter } from 'next/navigation';
+import { logout } from '@/store/slices/userSlice';
+import { BiMenuAltLeft } from 'react-icons/bi';
+import { AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Navbar = () => {
   const dispatch = useDispatch();

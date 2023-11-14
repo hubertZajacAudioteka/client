@@ -3,15 +3,15 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import { MutationDefinition } from '@reduxjs/toolkit/query';
 
-type DeleteRecordFunction = {
+interface DeleteRecordFunction {
   deleteFunction: MutationTrigger<MutationDefinition<string, any, string, any>>;
-};
+}
 
-type ConfirmDialogState = {
+interface ConfirmDialogState {
   isOpen: boolean;
   idRecordToDelete: string | null;
   deleteRecord: DeleteRecordFunction | null;
-};
+}
 
 const initialState: ConfirmDialogState = {
   isOpen: false,
@@ -26,9 +26,6 @@ export const confirmDialogSlice = createSlice({
     setIdRecordToDelete: (state, action: PayloadAction<string>) => {
       state.idRecordToDelete = action.payload;
     },
-    // setDeleteFunction: (state, action: PayloadAction<DeleteRecordFunction>) => {
-    //   state.deleteRecord = action.payload;
-    // },
     setDeleteFunction: (state, action: PayloadAction<DeleteRecordFunction>) => {
       state.deleteRecord = action.payload;
     },

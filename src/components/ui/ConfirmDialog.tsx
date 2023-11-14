@@ -1,11 +1,10 @@
 'use client';
-import { RootState } from '@/store';
-import { productApi } from '@/store/apis/productApi';
-import { closeConfirmDialog } from '@/store/slices/confirmDialogSlice';
-import { revalidatePath } from 'next/cache';
-import { useRouter } from 'next/navigation';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store';
+import { closeConfirmDialog } from '@/store/slices/confirmDialogSlice';
 
 const ConfirmDialog = () => {
   const router = useRouter();
@@ -17,6 +16,7 @@ const ConfirmDialog = () => {
   const deleteRecordFunction = useSelector(
     (state: RootState) => state.confirmDialog.deleteRecord?.deleteFunction
   );
+
   const handleConfirm = async () => {
     if (deleteRecordFunction && idRecordToDelete) {
       await deleteRecordFunction(idRecordToDelete);

@@ -1,17 +1,17 @@
 'use client';
 
 import React from 'react';
-import { RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiTwotoneEdit } from 'react-icons/ai';
 import Link from 'next/link';
-import { FaTrash } from 'react-icons/fa';
+import { RootState } from '@/store';
 import { useDeleteProductMutation } from '@/store/apis/productApi';
 import {
   openConfirmDialog,
   setDeleteFunction,
   setIdRecordToDelete,
 } from '@/store/slices/confirmDialogSlice';
+import { AiTwotoneEdit } from 'react-icons/ai';
+import { FaTrash } from 'react-icons/fa';
 
 interface ProductActionProps {
   id: string;

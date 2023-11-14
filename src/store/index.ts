@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { userApi } from './apis/userApi';
 import userReducer from './slices/userSlice';
 import orderReducer from './slices/orderSlice';
 import popupReducer from './slices/popupSlice';
@@ -15,7 +15,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { userApi } from './apis/userApi';
 import { orderApi } from './apis/orderApi';
 import { productApi } from './apis/productApi';
 

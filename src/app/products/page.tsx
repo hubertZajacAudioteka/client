@@ -1,9 +1,9 @@
-import { getCategories, getProducts } from '@/actions/product';
-import ProductCard from '@/components/product/ProductCard';
-import Pagination from '@/components/ui/Pagination';
 import Link from 'next/link';
+import { getCategories, getProducts } from '@/actions/product';
 import { Category, GetProductsResponse } from '@/types/product';
 import ButtonAddNew from '@/components/product/ButtonAddNew';
+import Pagination from '@/components/ui/Pagination';
+import ProductCard from '@/components/product/ProductCard';
 
 const ProductsPage = async ({
   searchParams,

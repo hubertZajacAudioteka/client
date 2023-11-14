@@ -1,7 +1,7 @@
-import { getProducts } from '@/actions/product';
-import ButtonBuy from '@/components/product/ButtonBuy';
-import { GetProductsResponse } from '@/types/product';
 import Image from 'next/image';
+import { getProducts } from '@/actions/product';
+import { GetProductsResponse } from '@/types/product';
+import ButtonBuy from '@/components/product/ButtonBuy';
 
 const HomePage = async () => {
   const newestProducts: GetProductsResponse = await getProducts(1, 'newest');

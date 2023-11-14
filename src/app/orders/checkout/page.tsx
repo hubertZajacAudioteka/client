@@ -1,12 +1,12 @@
 'use client';
 
-import { StripeElementsOptions, loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from '@/components/order/CheckoutForm';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { StripeElementsOptions, loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { RootState } from '@/store';
 import { useFetchSecretKeyMutation } from '@/store/apis/orderApi';
+import CheckoutForm from '@/components/order/CheckoutForm';
 
 const CheckoutOrderPage = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);

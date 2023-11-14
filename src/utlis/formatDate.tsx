@@ -18,7 +18,6 @@ export const formatDate = (dateString: string) => {
   const day: number = date.getDate();
   const monthIndex: number = date.getMonth();
   const year: number = date.getFullYear();
-
   const month: string = months[monthIndex];
 
   return `${day} ${month} ${year}`;

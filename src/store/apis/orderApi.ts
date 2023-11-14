@@ -1,11 +1,10 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   AddOrderValues,
   DeleteOrderResponse,
   FetchClientResponse,
-  GetOrdersResponse,
   Order,
 } from '@/types/order';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const orderApi = createApi({
   reducerPath: 'orderApi',

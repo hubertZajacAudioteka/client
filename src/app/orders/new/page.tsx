@@ -11,6 +11,7 @@ const NewOrderPage = () => {
     (state: RootState) => state.order.orderedProducts
   );
   const orderValue = useSelector((state: RootState) => state.order.value);
+
   return (
     <div>
       <div className='flex justify-between'>

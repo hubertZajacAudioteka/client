@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
-import { Formik, FormikHelpers } from 'formik';
 import * as yup from 'yup';
-import { Category, FormAddProduct } from '@/types/product';
+import { Formik, FormikHelpers } from 'formik';
+import { useRouter } from 'next/navigation';
 import { useAddProductMutation } from '@/store/apis/productApi';
 import { useDispatch } from 'react-redux';
 import { openPopup } from '@/store/slices/popupSlice';
-import { useRouter } from 'next/navigation';
+import { Category, FormAddProduct } from '@/types/product';
 
 interface FormAddProductProps {
   categories: Category[];
@@ -14,8 +14,9 @@ interface FormAddProductProps {
 
 const FormAddProduct = ({ categories }: FormAddProductProps) => {
   const router = useRouter();
-  const [addProduct, { error, isSuccess }] = useAddProductMutation();
+  const [addProduct] = useAddProductMutation();
   const dispatch = useDispatch();
+
   const initialValues: FormAddProduct = {
     title: '',
     image: null as File | null,
