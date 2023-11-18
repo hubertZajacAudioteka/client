@@ -2,10 +2,6 @@
 
 import { cookies } from 'next/headers';
 
-export const config = {
-  runtime: 'edge',
-};
-
 // export const getProducts = async (
 //   page: number,
 //   category = '',

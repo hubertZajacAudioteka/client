@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: 'CRM for best shop',
 };
 
+export const runtime = 'edge';
+
 export default function RootLayout({
   children,
 }: {
