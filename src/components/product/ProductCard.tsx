@@ -11,7 +11,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const imageSrc = product.image.startsWith('images')
-    ? `http://127.0.0.1:8000/storage/${product.image}`
+    ? `${process.env.NEXT_PUBLIC_STORAGE}/${product.image}`
     : product.image;
 
   const bgColor =

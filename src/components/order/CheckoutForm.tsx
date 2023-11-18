@@ -74,7 +74,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'http://127.0.0.1:3000/orders/checkout',
+        return_url: 'https://shop-crm-client.vercel.app/orders/checkout',
       },
     });
     if (

@@ -17,7 +17,7 @@ type OrderedProductCardProps = {
 const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
   const dispatch = useDispatch();
   const imageSrc = product.image.startsWith('images')
-    ? `http://127.0.0.1:8000/storage/${product.image}`
+    ? `${process.env.NEXT_PUBLIC_STORAGE}/${product.image}`
     : product.image;
 
   return (

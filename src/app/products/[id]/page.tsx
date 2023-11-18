@@ -6,7 +6,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
   const product: Product = await getProduct(params.id);
 
   const imageSrc = product.image.startsWith('images')
-    ? `http://127.0.0.1:8000/storage/${product.image}`
+    ? `${process.env.NEXT_PUBLIC_STORAGE}/${product.image}`
     : product.image;
 
   return (
