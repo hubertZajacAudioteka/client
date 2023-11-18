@@ -3,8 +3,6 @@ import { getProducts } from '@/actions/product';
 import { GetProductsResponse } from '@/types/product';
 import ButtonBuy from '@/components/product/ButtonBuy';
 
-export const runtime = 'edge';
-
 const HomePage = async () => {
   const newestProducts: GetProductsResponse = await getProducts(1, 'newest');
 
