@@ -60,7 +60,7 @@ export const getRecordsByPageAction = async (
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    console.error('My error', e);
   }
 };
 
