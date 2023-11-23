@@ -26,7 +26,11 @@ export const getRecordsByPageAction = async (
   });
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch`);
+    throw new Error(`Failed to fetch`, {
+      cause: {
+        API_URL_SERVER,
+      },
+    });
   }
   return res.json();
 };
