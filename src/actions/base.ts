@@ -60,7 +60,11 @@ export const getRecordsByPageAction = async (
 
     return res.json();
   } catch (e) {
-    console.error('My error', e);
+    throw new Error('my', {
+      cause: {
+        e,
+      },
+    });
   }
 };
 
