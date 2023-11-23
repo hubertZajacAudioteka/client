@@ -5,11 +5,12 @@ import {
   FetchClientResponse,
   Order,
 } from '@/types/order';
+import { API_URL_CLIENT } from '@/constants/api';
 
 export const orderApi = createApi({
   reducerPath: 'orderApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
+    baseUrl: `${API_URL_CLIENT}`,
   }),
   tagTypes: ['Order'],
   endpoints(builder) {

@@ -1,5 +1,5 @@
-import { getOrders } from '@/actions/order';
-import { GetOrdersResponse } from '@/types/order';
+import { getOrdersByPage } from '@/actions/order';
+import { GetOrdersByPageData } from '@/types/order';
 import { formatDate } from '@/utlis/formatDate';
 import OrderAction from '@/components/order/OrderAction';
 import Pagination from '@/components/ui/Pagination';
@@ -9,7 +9,9 @@ const OrdersPage = async ({
 }: {
   searchParams: { page: number };
 }) => {
-  const ordersData: GetOrdersResponse = await getOrders(searchParams.page);
+  const ordersData: GetOrdersByPageData = await getOrdersByPage(
+    searchParams.page
+  );
 
   return (
     <div>

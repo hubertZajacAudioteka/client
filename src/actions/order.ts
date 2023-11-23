@@ -1,11 +1,15 @@
 'use server';
 
-import { cookies } from 'next/headers';
+import { API_URL_SERVER } from '@/constants/api';
+import { GetOrdersByPageData, Order } from '@/types/order';
+import { getToken } from '@/utlis/getToken';
 
-export const getOrders = async (page: number) => {
-  const jwt = cookies().get('jwt')?.value;
+export const getOrdersByPage = async (
+  page: number
+): Promise<GetOrdersByPageData> => {
+  const jwt = getToken();
 
-  const res = await fetch(`${process.env.API_URL}/orders?page=${page}`, {
+  const res = await fetch(`${API_URL_SERVER}/orders?page=${page}`, {
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${jwt}`,
@@ -18,10 +22,10 @@ export const getOrders = async (page: number) => {
   return res.json();
 };
 
-export const getOrder = async (id: string) => {
-  const jwt = cookies().get('jwt')?.value;
+export const getOrder = async (id: string): Promise<Order> => {
+  const jwt = getToken();
 
-  const res = await fetch(`${process.env.API_URL}/orders/${id}`, {
+  const res = await fetch(`${API_URL_SERVER}/orders/${id}`, {
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${jwt}`,

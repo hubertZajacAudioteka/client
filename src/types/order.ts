@@ -19,7 +19,7 @@ export interface AddOrderValues {
   }[];
 }
 
-export interface GetOrdersResponse {
+export interface GetOrdersByPageData {
   data: Order[];
   meta: {
     per_page: number;

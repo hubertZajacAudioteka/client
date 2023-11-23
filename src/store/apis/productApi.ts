@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL_CLIENT } from '@/constants/api';
 import {
   DeleteProductResponse,
   FormAddProduct,
@@ -9,7 +10,7 @@ import {
 export const productApi = createApi({
   reducerPath: 'productApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
+    baseUrl: `${API_URL_CLIENT}`,
   }),
   tagTypes: ['Product'],
   endpoints(builder) {

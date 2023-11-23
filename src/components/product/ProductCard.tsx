@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Product } from '@/types/product';
 import ButtonBuy from './ButtonBuy';
 import ProductAction from './ProductAction';
+import { STORAGE } from '@/constants/api';
 
 interface ProductCardProps {
   product: Product;
@@ -11,7 +12,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const imageSrc = product.image.startsWith('images')
-    ? `${process.env.NEXT_PUBLIC_STORAGE}/${product.image}`
+    ? `${STORAGE}/${product.image}`
     : product.image;
 
   const bgColor =

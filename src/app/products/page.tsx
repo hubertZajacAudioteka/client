@@ -1,32 +1,44 @@
 import Link from 'next/link';
-import { getCategories, getProducts } from '@/actions/product';
-import { Category, GetProductsResponse } from '@/types/product';
+import { getCategories } from '@/actions/product';
+import { Category, CategoryName, GetProductsByPageData } from '@/types/product';
 import ButtonAddNew from '@/components/product/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
 import ProductCard from '@/components/product/ProductCard';
+import { getRecordsByPageAction } from '@/actions/base';
+import { Endpoint, SortParamProduct } from '@/types/serverSideRequest';
+import { SortDirection } from '../../types/serverSideRequest';
 
 const ProductsPage = async ({
   searchParams,
 }: {
   searchParams: {
     page: number;
-    category?: string;
-    sortParam?: string;
-    direction?: string;
+    category?: CategoryName;
+    sortParam?: SortParamProduct;
+    sortDirection?: SortDirection;
   };
 }) => {
-  const productsDataPromise: Promise<GetProductsResponse> = getProducts(
-    searchParams.page,
-    searchParams.category ?? '',
-    searchParams.sortParam ?? '',
-    searchParams.direction ?? ''
-  );
-  const categoriesPromise: Promise<Category[]> = getCategories();
+  // const productsDataPromise = getProductsByPage(
+  //   searchParams.page,
+  //   searchParams.category ?? '',
+  //   searchParams.sortParam ?? '',
+  //   searchParams.direction ?? ''
+  // );
+  const productsByPagePromise: Promise<GetProductsByPageData> =
+    getRecordsByPageAction(Endpoint.Products, {
+      page: searchParams.page,
+      category: searchParams.category,
+      sortDirection: searchParams.sortDirection,
+      sortParam: searchParams.sortParam,
+    });
+  const categoriesPromise = getCategories();
 
-  const [productsData, categories] = await Promise.all([
-    productsDataPromise,
+  const [productsByPage, categories] = await Promise.all([
+    productsByPagePromise,
     categoriesPromise,
   ]);
+
+  console.log('PRODUCTS', productsByPage);
 
   return (
     <>
@@ -42,7 +54,7 @@ const ProductsPage = async ({
             } md:text-base xl:text-lg`}
             href={`/products?page=1${
               searchParams.sortParam
-                ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.direction}`
+                ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.sortDirection}`
                 : ''
             }`}
           >
@@ -53,7 +65,7 @@ const ProductsPage = async ({
               key={category.id}
               href={`/products?page=1&category=${category.name}${
                 searchParams.sortParam
-                  ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.direction}`
+                  ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.sortDirection}`
                   : ''
               }`}
               className={`text-sm mb-2 capitalize ${
@@ -69,10 +81,10 @@ const ProductsPage = async ({
           <Link
             href={`/products?page=1${
               searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=price&direction=asc`}
+            }&sortParam=price&sortDirection=asc`}
             className={`text-sm mb-2 capitalize ${
               searchParams.sortParam === 'price' &&
-              searchParams.direction === 'asc' &&
+              searchParams.sortDirection === 'asc' &&
               'font-bold'
             } md:text-base xl:text-lg`}
           >
@@ -81,10 +93,10 @@ const ProductsPage = async ({
           <Link
             href={`/products?page=1${
               searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=price&direction=desc`}
+            }&sortParam=price&sortDirection=desc`}
             className={`text-sm mb-2 capitalize ${
               searchParams.sortParam === 'price' &&
-              searchParams.direction === 'desc' &&
+              searchParams.sortDirection === 'desc' &&
               'font-bold'
             } xl:text-lg`}
           >
@@ -93,10 +105,10 @@ const ProductsPage = async ({
           <Link
             href={`/products?page=1${
               searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=title&direction=asc`}
+            }&sortParam=title&sortDirection=asc`}
             className={`text-sm mb-2 capitalize ${
               searchParams.sortParam === 'title' &&
-              searchParams.direction === 'asc' &&
+              searchParams.sortDirection === 'asc' &&
               'font-bold'
             } xl:text-lg`}
           >
@@ -105,10 +117,10 @@ const ProductsPage = async ({
           <Link
             href={`/products?page=1${
               searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=title&direction=desc`}
+            }&sortParam=title&sortDirection=desc`}
             className={`text-sm mb-2 capitalize ${
               searchParams.sortParam === 'title' &&
-              searchParams.direction === 'desc' &&
+              searchParams.sortDirection === 'desc' &&
               'font-bold'
             } xl:text-lg`}
           >
@@ -116,19 +128,19 @@ const ProductsPage = async ({
           </Link>
         </div>
         <div className='w-2/3 md:grid grid-cols-2 gap-4 xl:grid-cols-3'>
-          {productsData.data.map((product) => (
+          {productsByPage.data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
       <Pagination
         pageAmount={Math.ceil(
-          productsData.meta.total / productsData?.meta.per_page
+          productsByPage.meta.total / productsByPage?.meta.per_page
         )}
         queryParams={{
           category: searchParams.category as string,
           sortParam: searchParams.sortParam as string,
-          direction: searchParams.direction as string,
+          direction: searchParams.sortDirection as string,
         }}
       />
     </>

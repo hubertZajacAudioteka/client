@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL_CLIENT } from '@/constants/api';
 import {
   UserFormLogin,
   UserFormRegister,
@@ -10,7 +11,7 @@ import {
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
+    baseUrl: `${API_URL_CLIENT}`,
   }),
   tagTypes: ['User'],
   endpoints(builder) {

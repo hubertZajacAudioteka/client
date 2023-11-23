@@ -1,4 +1,4 @@
-import { getCategories, getProduct } from '@/actions/product';
+import { getCategories, getProductById } from '@/actions/product';
 import FormEditProduct from '@/components/product/FormEditProduct';
 
 const EditProductPage = async ({
@@ -9,7 +9,7 @@ const EditProductPage = async ({
   };
 }) => {
   const categories = await getCategories();
-  const product = await getProduct(params.id);
+  const product = await getProductById(params.id);
   return (
     <div>
       <FormEditProduct categories={categories} product={product} />

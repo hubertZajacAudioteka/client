@@ -1,6 +1,12 @@
+export enum CategoryName {
+  Newest = 'newest',
+  Regular = 'regular',
+  Discount = 'discount',
+}
+
 export interface Category {
   id: string;
-  name: string;
+  name: CategoryName;
 }
 
 export interface Product {
@@ -12,7 +18,7 @@ export interface Product {
   category: Category;
 }
 
-export interface GetProductsResponse {
+export interface GetProductsByPageData {
   data: Product[];
   meta: {
     per_page: number;

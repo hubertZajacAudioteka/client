@@ -1,10 +1,14 @@
 import Image from 'next/image';
-import { getProducts } from '@/actions/product';
-import { GetProductsResponse } from '@/types/product';
+import { CategoryName, GetProductsByPageData } from '@/types/product';
 import ButtonBuy from '@/components/product/ButtonBuy';
+import { getRecordsByPageAction } from '@/actions/base';
+import { Endpoint } from '@/types/serverSideRequest';
 
 const HomePage = async () => {
-  const newestProducts: GetProductsResponse = await getProducts(1, 'newest');
+  const newestProducts: GetProductsByPageData = await getRecordsByPageAction(
+    Endpoint.Products,
+    { page: 1, category: CategoryName.Newest }
+  );
 
   return (
     <section>
