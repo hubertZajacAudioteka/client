@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useEditProductMutation } from '@/store/apis/productApi';
 import { openPopup } from '@/store/slices/popupSlice';
 import { Category, FormEditProduct, Product } from '@/types/product';
+import { ALLOWED_TYPES } from '@/constants/forms';
 
 interface FormEditProductProps {
   categories: Category[];
@@ -40,14 +41,7 @@ const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
         if (!(value instanceof File)) {
           return false;
         }
-
-        const allowedTypes = [
-          'image/jpeg',
-          'image/jpg',
-          'image/png',
-          'image/webp',
-        ];
-        return allowedTypes.includes(value.type);
+        return ALLOWED_TYPES.includes(value.type);
       })
       .test('fileSize', 'File size is too large', (value) => {
         if (value === null) {
