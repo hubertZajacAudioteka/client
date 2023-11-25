@@ -1,5 +1,7 @@
+import { getRecordById } from '@/actions/actions';
 import { getCategories, getProductById } from '@/actions/product';
 import FormEditProduct from '@/components/product/FormEditProduct';
+import { Endpoint } from '@/types/serverSideRequest';
 
 const EditProductPage = async ({
   params,
@@ -8,8 +10,14 @@ const EditProductPage = async ({
     id: string;
   };
 }) => {
-  const categories = await getCategories();
-  const product = await getProductById(params.id);
+  const categoriesPromise = getCategories();
+  const productPromise = getRecordById(Endpoint.Products, params.id);
+
+  const [categories, product] = await Promise.all([
+    categoriesPromise,
+    productPromise,
+  ]);
+
   return (
     <div>
       <FormEditProduct categories={categories} product={product} />

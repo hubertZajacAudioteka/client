@@ -1,17 +1,18 @@
-import { getOrdersByPage } from '@/actions/order';
 import { GetOrdersByPageData } from '@/types/order';
 import { formatDate } from '@/utlis/formatDate';
 import OrderAction from '@/components/order/OrderAction';
 import Pagination from '@/components/ui/Pagination';
+import { getRecordsByPageAction } from '@/actions/actions';
+import { Endpoint } from '@/types/serverSideRequest';
 
 const OrdersPage = async ({
   searchParams,
 }: {
   searchParams: { page: number };
 }) => {
-  const ordersData: GetOrdersByPageData = await getOrdersByPage(
-    searchParams.page
-  );
+  const ordersData = await getRecordsByPageAction(Endpoint.Orders, {
+    page: searchParams.page,
+  });
 
   return (
     <div>

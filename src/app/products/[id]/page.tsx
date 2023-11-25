@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { getProductById } from '@/actions/product';
-import { Product } from '@/types/product';
+import { getRecordById } from '@/actions/actions';
+import { Endpoint } from '@/types/serverSideRequest';
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {
-  const product: Product = await getProductById(params.id);
+  const product = await getRecordById(Endpoint.Products, params.id);
 
   const imageSrc = product.image.startsWith('images')
     ? `${process.env.NEXT_PUBLIC_STORAGE}/${product.image}`

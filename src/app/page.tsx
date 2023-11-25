@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CategoryName, GetProductsByPageData } from '@/types/product';
 import ButtonBuy from '@/components/product/ButtonBuy';
-import { getRecordsByPageAction } from '@/actions/base';
+import { getRecordsByPageAction } from '@/actions/actions';
 import { Endpoint } from '@/types/serverSideRequest';
 
 const HomePage = async () => {

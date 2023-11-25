@@ -1,5 +1,5 @@
-import { getOrder } from '@/actions/order';
-import { Order } from '@/types/order';
+import { getRecordById } from '@/actions/actions';
+import { Endpoint } from '@/types/serverSideRequest';
 import { formatDate } from '@/utlis/formatDate';
 
 const OrderPage = async ({
@@ -9,7 +9,8 @@ const OrderPage = async ({
     id: string;
   };
 }) => {
-  const order: Order = await getOrder(params.id);
+  const order = await getRecordById(Endpoint.Orders, params.id);
+
   return (
     <div>
       <h3>Order {formatDate(order.created_at)}</h3>

@@ -1,9 +1,16 @@
-import { CategoryName } from './product';
+import { GetOrdersByPageData, Order } from './order';
+import {
+  Category,
+  CategoryName,
+  GetProductsByPageData,
+  Product,
+} from './product';
 
 export enum Endpoint {
   Products = 'products',
   Orders = 'orders',
   Users = 'users',
+  Categories = 'categories',
 }
 
 export enum SortDirection {
@@ -48,3 +55,17 @@ export interface GetOrdersByPageParams {
 export type GetRecordsByPageParams =
   | GetProductsByPageParams
   | GetOrdersByPageParams;
+
+export type EndpointDataByPageMap = {
+  products: GetProductsByPageData;
+  orders: GetOrdersByPageData;
+};
+
+export type EndpointDataSingleRecordMap = {
+  products: Product;
+  orders: Order;
+};
+
+export type EndpointDataRecordsMap = {
+  categories: Category[];
+};

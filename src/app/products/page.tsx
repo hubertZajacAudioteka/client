@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import { getCategories } from '@/actions/product';
-import { Category, CategoryName, GetProductsByPageData } from '@/types/product';
+import { CategoryName } from '@/types/product';
 import ButtonAddNew from '@/components/product/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
 import ProductCard from '@/components/product/ProductCard';
-import { getRecordsByPageAction } from '@/actions/base';
+import { getAllRecords, getRecordsByPageAction } from '@/actions/actions';
 import { Endpoint, SortParamProduct } from '@/types/serverSideRequest';
 import { SortDirection } from '../../types/serverSideRequest';
 
@@ -18,27 +17,18 @@ const ProductsPage = async ({
     sortDirection?: SortDirection;
   };
 }) => {
-  // const productsDataPromise = getProductsByPage(
-  //   searchParams.page,
-  //   searchParams.category ?? '',
-  //   searchParams.sortParam ?? '',
-  //   searchParams.direction ?? ''
-  // );
-  const productsByPagePromise: Promise<GetProductsByPageData> =
-    getRecordsByPageAction(Endpoint.Products, {
-      page: searchParams.page,
-      category: searchParams.category,
-      sortDirection: searchParams.sortDirection,
-      sortParam: searchParams.sortParam,
-    });
-  const categoriesPromise = getCategories();
+  const productsByPagePromise = getRecordsByPageAction(Endpoint.Products, {
+    page: searchParams.page,
+    category: searchParams.category,
+    sortDirection: searchParams.sortDirection,
+    sortParam: searchParams.sortParam,
+  });
+  const categoriesPromise = getAllRecords(Endpoint.Categories);
 
   const [productsByPage, categories] = await Promise.all([
     productsByPagePromise,
     categoriesPromise,
   ]);
-
-  console.log('PRODUCTS', productsByPage);
 
   return (
     <>
