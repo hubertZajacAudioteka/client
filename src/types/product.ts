@@ -1,4 +1,5 @@
 export enum CategoryName {
+  All = '',
   Newest = 'newest',
   Regular = 'regular',
   Discount = 'discount',

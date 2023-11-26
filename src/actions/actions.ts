@@ -19,7 +19,7 @@ export const getRecordsByPageAction = async <
   let url = `${API_URL_SERVER}/${endpoint}?page=${params.page}`;
 
   for (const [key, value] of Object.entries(params)) {
-    if (value) {
+    if (value && key !== 'page') {
       url += `&${key}=${value}`;
     }
   }
@@ -64,28 +64,6 @@ export const getRecordById = async <
 
   return data as EndpointDataSingleRecordMap[T];
 };
-
-// export const getAllRecords = async <T extends EndpointDataRecordsMap>(
-//   endpoint: T
-// ): Promise<EndpointDataRecordsMap[T]> => {
-//   const jwt = getToken();
-//   const url = `${API_URL_SERVER}/${endpoint}`;
-
-//   const res = await fetch(url, {
-//     headers: {
-//       'content-type': 'application/json',
-//       authorization: `Bearer ${jwt}`,
-//     },
-//   });
-
-//   if (!res.ok) {
-//     throw new Error(`Failed to fetch`);
-//   }
-
-//   const data = await res.json();
-
-//   return data as EndpointDataRecordsMap[T];
-// };
 
 export const getAllRecords = async <T extends keyof EndpointDataRecordsMap>(
   endpoint: T

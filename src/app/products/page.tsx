@@ -1,34 +1,36 @@
 import Link from 'next/link';
-import { CategoryName } from '@/types/product';
 import ButtonAddNew from '@/components/product/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
 import ProductCard from '@/components/product/ProductCard';
 import { getAllRecords, getRecordsByPageAction } from '@/actions/actions';
-import { Endpoint, SortParamProduct } from '@/types/serverSideRequest';
-import { SortDirection } from '../../types/serverSideRequest';
+import {
+  Endpoint,
+  GetProductsByPageParams,
+  SortDirection,
+  SortParamProduct,
+} from '@/types/serverSideRequest';
+import { getHref } from '@/utlis/getHref';
+import { CategoryName } from '@/types/product';
+import { getClassnamesForFilter } from '@/utlis/getClassnamesForFilter';
+import { FilterType } from '@/types/filter';
 
-const ProductsPage = async ({
-  searchParams,
-}: {
-  searchParams: {
-    page: number;
-    category?: CategoryName;
-    sortParam?: SortParamProduct;
-    sortDirection?: SortDirection;
-  };
+const ProductsPage = async (params: {
+  searchParams: GetProductsByPageParams;
 }) => {
   const productsByPagePromise = getRecordsByPageAction(Endpoint.Products, {
-    page: searchParams.page,
-    category: searchParams.category,
-    sortDirection: searchParams.sortDirection,
-    sortParam: searchParams.sortParam,
+    page: params.searchParams.page,
+    category: params.searchParams.category,
+    sortDirection: params.searchParams.sortDirection,
+    sortParam: params.searchParams.sortParam,
   });
   const categoriesPromise = getAllRecords(Endpoint.Categories);
-
   const [productsByPage, categories] = await Promise.all([
     productsByPagePromise,
     categoriesPromise,
   ]);
+
+  const pageParams = params.searchParams;
+  const { page, ...filterParams } = params.searchParams;
 
   return (
     <>
@@ -40,27 +42,26 @@ const ProductsPage = async ({
           </h3>
           <Link
             className={`text-sm mb-2 capitalize ${
-              !searchParams.category && 'font-bold'
+              !pageParams.category && 'font-bold'
             } md:text-base xl:text-lg`}
-            href={`/products?page=1${
-              searchParams.sortParam
-                ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.sortDirection}`
-                : ''
-            }`}
+            href={getHref(Endpoint.Products, {
+              ...pageParams,
+              category: CategoryName.All,
+            })}
           >
             All
           </Link>
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/products?page=1&category=${category.name}${
-                searchParams.sortParam
-                  ? `&sortParam=${searchParams.sortParam}&direction=${searchParams.sortDirection}`
-                  : ''
-              }`}
-              className={`text-sm mb-2 capitalize ${
-                searchParams.category === category.name && 'font-bold'
-              } md:text-base xl:text-lg`}
+              href={getHref(Endpoint.Products, {
+                ...pageParams,
+                category: category.name,
+              })}
+              className={getClassnamesForFilter(
+                { type: FilterType.Category, name: category.name },
+                pageParams
+              )}
             >
               {category.name}
             </Link>
@@ -69,50 +70,70 @@ const ProductsPage = async ({
             Sort by
           </h3>
           <Link
-            href={`/products?page=1${
-              searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=price&sortDirection=asc`}
-            className={`text-sm mb-2 capitalize ${
-              searchParams.sortParam === 'price' &&
-              searchParams.sortDirection === 'asc' &&
-              'font-bold'
-            } md:text-base xl:text-lg`}
+            href={getHref(Endpoint.Products, {
+              ...pageParams,
+              sortParam: SortParamProduct.Price,
+              sortDirection: SortDirection.Ascending,
+            })}
+            className={getClassnamesForFilter(
+              {
+                type: FilterType.Filter,
+                sortParam: SortParamProduct.Price,
+                sortDirection: SortDirection.Ascending,
+              },
+              pageParams
+            )}
           >
             Price ascending
           </Link>
           <Link
-            href={`/products?page=1${
-              searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=price&sortDirection=desc`}
-            className={`text-sm mb-2 capitalize ${
-              searchParams.sortParam === 'price' &&
-              searchParams.sortDirection === 'desc' &&
-              'font-bold'
-            } xl:text-lg`}
+            href={getHref(Endpoint.Products, {
+              ...pageParams,
+              sortParam: SortParamProduct.Price,
+              sortDirection: SortDirection.Descending,
+            })}
+            className={getClassnamesForFilter(
+              {
+                type: FilterType.Filter,
+                sortParam: SortParamProduct.Price,
+                sortDirection: SortDirection.Descending,
+              },
+              pageParams
+            )}
           >
             Price descending
           </Link>
           <Link
-            href={`/products?page=1${
-              searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=title&sortDirection=asc`}
-            className={`text-sm mb-2 capitalize ${
-              searchParams.sortParam === 'title' &&
-              searchParams.sortDirection === 'asc' &&
-              'font-bold'
-            } xl:text-lg`}
+            href={getHref(Endpoint.Products, {
+              ...pageParams,
+              sortParam: SortParamProduct.Name,
+              sortDirection: SortDirection.Ascending,
+            })}
+            className={getClassnamesForFilter(
+              {
+                type: FilterType.Filter,
+                sortParam: SortParamProduct.Name,
+                sortDirection: SortDirection.Ascending,
+              },
+              pageParams
+            )}
           >
             Product name ascending
           </Link>
           <Link
-            href={`/products?page=1${
-              searchParams.category ? `&category=${searchParams.category}` : ''
-            }&sortParam=title&sortDirection=desc`}
-            className={`text-sm mb-2 capitalize ${
-              searchParams.sortParam === 'title' &&
-              searchParams.sortDirection === 'desc' &&
-              'font-bold'
-            } xl:text-lg`}
+            href={getHref(Endpoint.Products, {
+              ...pageParams,
+              sortParam: SortParamProduct.Name,
+              sortDirection: SortDirection.Descending,
+            })}
+            className={getClassnamesForFilter(
+              {
+                type: FilterType.Filter,
+                sortParam: SortParamProduct.Name,
+                sortDirection: SortDirection.Descending,
+              },
+              pageParams
+            )}
           >
             Product name descending
           </Link>
@@ -127,11 +148,7 @@ const ProductsPage = async ({
         pageAmount={Math.ceil(
           productsByPage.meta.total / productsByPage?.meta.per_page
         )}
-        queryParams={{
-          category: searchParams.category as string,
-          sortParam: searchParams.sortParam as string,
-          direction: searchParams.sortDirection as string,
-        }}
+        queryParams={filterParams}
       />
     </>
   );

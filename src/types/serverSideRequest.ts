@@ -20,8 +20,7 @@ export enum SortDirection {
 
 export enum SortParamProduct {
   Price = 'price',
-  Name = 'name',
-  Title = 'title',
+  Name = 'title',
 }
 
 export enum SortParamOrder {
