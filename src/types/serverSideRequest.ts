@@ -49,6 +49,7 @@ export interface GetOrdersByPageParams {
       ? SortDirection
       : never
     : SortDirection;
+  search?: string;
 }
 
 export type GetRecordsByPageParams =

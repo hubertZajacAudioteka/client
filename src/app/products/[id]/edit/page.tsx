@@ -1,5 +1,4 @@
-import { getRecordById } from '@/actions/actions';
-import { getCategories, getProductById } from '@/actions/product';
+import { getAllRecords, getRecordById } from '@/actions/actions';
 import FormEditProduct from '@/components/product/FormEditProduct';
 import { Endpoint } from '@/types/serverSideRequest';
 
@@ -10,7 +9,7 @@ const EditProductPage = async ({
     id: string;
   };
 }) => {
-  const categoriesPromise = getCategories();
+  const categoriesPromise = getAllRecords(Endpoint.Categories);
   const productPromise = getRecordById(Endpoint.Products, params.id);
 
   const [categories, product] = await Promise.all([

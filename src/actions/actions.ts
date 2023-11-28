@@ -84,6 +84,5 @@ export const getAllRecords = async <T extends keyof EndpointDataRecordsMap>(
 
   const data = await res.json();
 
-  // Use type assertion to tell TypeScript that T is a valid key
   return data as EndpointDataRecordsMap[T];
 };

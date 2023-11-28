@@ -3,19 +3,26 @@ import { formatDate } from '@/utlis/formatDate';
 import OrderAction from '@/components/order/OrderAction';
 import Pagination from '@/components/ui/Pagination';
 import { getRecordsByPageAction } from '@/actions/actions';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint, GetOrdersByPageParams } from '@/types/serverSideRequest';
+import OrdersFilters from '@/components/order/OrdersFilters';
 
 const OrdersPage = async ({
   searchParams,
 }: {
-  searchParams: { page: number };
+  searchParams: GetOrdersByPageParams;
 }) => {
   const ordersData = await getRecordsByPageAction(Endpoint.Orders, {
     page: searchParams.page,
+    sortParam: searchParams.sortParam,
+    sortDirection: searchParams.sortDirection,
+    search: searchParams.search,
   });
+
+  const { page, ...filterParams } = searchParams;
 
   return (
     <div>
+      <OrdersFilters searchParams={searchParams} />
       <table className='min-w-full table-auto'>
         <thead>
           <tr>
@@ -52,7 +59,7 @@ const OrdersPage = async ({
         pageAmount={Math.ceil(
           ordersData.meta.total / ordersData?.meta.per_page
         )}
-        queryParams={{}}
+        queryParams={filterParams}
       />
     </div>
   );
