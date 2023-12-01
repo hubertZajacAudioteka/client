@@ -11,7 +11,7 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import './CheckoutForm.css';
-import { PAYMENT_FAILURE_URL } from '@/constants/api';
+import { PAYMENT_URL } from '@/constants/api';
 
 export default function CheckoutForm() {
   const router = useRouter();
@@ -75,7 +75,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: PAYMENT_FAILURE_URL!,
+        return_url: PAYMENT_URL!,
       },
     });
     if (

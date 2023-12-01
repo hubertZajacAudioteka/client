@@ -50,11 +50,11 @@ const Navbar = () => {
   return (
     <header className='bg-gray-600 fixed h-16 w-full mb-5 z-20'>
       <div className='h-16 mx-3 py-3 relative flex justify-between items-center text-slate-50 max-w-[1500px] 2xl:m-auto'>
-        <div>
+        <div className='md:flex-1'>
           <Link href='/'>LOGO</Link>
         </div>
         {loggedUser && (
-          <div className='flex flex-col items-center justify-center gap-1'>
+          <div className='flex flex-col items-center justify-center gap-1 w-full md:flex-1'>
             <p>
               {loggedUser.first_name} {loggedUser.last_name}
             </p>
@@ -83,7 +83,7 @@ const Navbar = () => {
         <nav
           className={`bg-slate-400 transition-all duration-500 absolute p-4 top-0 navbar-menu ${
             isOpen ? 'left-[-16px]' : 'left-[-140px]'
-          } w-[120px] h-[200px] z-10  md:static md:w-auto md:h-auto md:bg-transparent`}
+          } w-[120px] h-[200px] z-10  md:static md:h-auto md:bg-transparent md:flex justify-end md:flex-1`}
         >
           <ul className='flex flex-col gap-2 items-center py-4 md:flex-row'>
             <li className='hover:text-red-200'>

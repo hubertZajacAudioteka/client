@@ -17,9 +17,14 @@ interface OrdersFiltersProps {
 }
 
 const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
-  const searchRecords = async () => {
+  const searchRecords = async (formData: FormData) => {
     'use server';
-    redirect(getHref(Endpoint.Orders, searchParams));
+    redirect(
+      getHref(Endpoint.Orders, {
+        ...searchParams,
+        search: formData.get('search') as string,
+      })
+    );
   };
   return (
     <div className='flex flex-col items-center mb-2 md:flex-row md:justify-between md:mb-5'>
@@ -31,6 +36,7 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
           className='border border-gray-300'
           type='text'
           placeholder='search'
+          name='search'
         />
         <button
           type='submit'

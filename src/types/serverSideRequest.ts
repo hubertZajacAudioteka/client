@@ -1,3 +1,4 @@
+import { SortDirection } from './serverSideRequest';
 import { GetOrdersByPageData, Order } from './order';
 import {
   Category,

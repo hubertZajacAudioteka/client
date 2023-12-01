@@ -6,9 +6,9 @@ export interface Order {
   created_at: string;
   value: number;
   user: User;
-  orderItems: {
+  order_items: {
     quantity: number;
-    product: Omit<Product, 'category'>;
+    product: Product;
   }[];
 }
 

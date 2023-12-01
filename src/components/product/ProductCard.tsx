@@ -41,7 +41,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div className={`${bgColor} rounded-md p-2 text-white`}>
             <p className='text-sm'>{product.category.name}</p>
           </div>
-          <ProductAction id={product.id} />
+          {<ProductAction id={product.id} />}
         </div>
         <h3 className='text-md font-semibold mb-1'>
           ${product.price.toFixed(2)}
