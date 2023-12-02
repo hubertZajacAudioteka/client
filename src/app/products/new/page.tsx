@@ -1,11 +1,13 @@
-import { getCategories } from '@/actions/product';
 import { Category } from '@/types/product';
 import FormAddProduct from '@/components/product/FormAddProduct';
+import { getAllRecords } from '@/actions/actions';
+import { Endpoint } from '@/types/serverSideRequest';
 
 const AddNewProductPage = async () => {
-  const categories: Category[] = await getCategories();
+  const categories: Category[] = await getAllRecords(Endpoint.Categories);
+
   return (
-    <div>
+    <div className='m-auto max-w-xl'>
       <FormAddProduct categories={categories} />
     </div>
   );
