@@ -22,13 +22,18 @@ const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
 
   return (
     <div className='flex gap-2'>
-      <div className='w-1/3'>
+      <div className='w-1/2 h-36 sm:h-52'>
         <Image src={imageSrc} alt={product.title} width={150} height={150} />
       </div>
-      <div className='w-full'>
+      <div className='w-1/2 flex flex-col justify-between p-2'>
         <div className='mb-3'>
-          <h3>{product.title}</h3>
-          <p>Price: {product.price}$</p>
+          <h3 className='capitalize text-base mb-2 font-semibold sm:text-xl'>
+            {product.title}
+          </h3>
+          <p className='text-sm sm:text-lg'>
+            <span className='font-semibold mr-2'>Price:</span>
+            {product.price}€
+          </p>
         </div>
         <div className='flex justify-between items-center'>
           <div className='flex items-center gap-1'>
@@ -57,10 +62,14 @@ const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
                 <BiSolidDownArrow />
               </div>
             </div>
-            <p>{product.quantity}</p>
+            <p className='text-lg font-semibold sm:text-xl'>
+              {product.quantity}
+            </p>
           </div>
           <div>
-            <h4>{(product.price * product.quantity).toFixed(2)}€</h4>
+            <h4 className='font-semibold'>
+              {(product.price * product.quantity).toFixed(2)}€
+            </h4>
           </div>
         </div>
       </div>
