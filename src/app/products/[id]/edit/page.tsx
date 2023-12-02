@@ -18,7 +18,7 @@ const EditProductPage = async ({
   ]);
 
   return (
-    <div>
+    <div className='m-auto max-w-xl'>
       <FormEditProduct categories={categories} product={product} />
     </div>
   );

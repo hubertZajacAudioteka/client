@@ -103,6 +103,9 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
             noValidate
             className='w-full border border-gray-400 rounded-md px-3 py-8 md:px-5 md:py-12 relative'
           >
+            <h2 className='text-xl text-center mb-10 sm:text-2xl'>
+              Add a new product
+            </h2>
             <div className='flex justify-between items-center mb-3'>
               <label className='text-sm sm:text-lg'>Title</label>
               {errors.title && touched.title && (

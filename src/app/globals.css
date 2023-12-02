@@ -29,6 +29,11 @@ input {
   border: none;
 }
 
+select {
+  outline: none;
+  border: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
