@@ -10,7 +10,7 @@ import { setLoggedUser } from '@/store/slices/userSlice';
 import { UserFormRegister } from '../../types/user';
 
 const FormRegister = () => {
-  const [register] = useRegisterMutation();
+  const [register, { error, isError }] = useRegisterMutation();
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
@@ -57,11 +57,16 @@ const FormRegister = () => {
           handleBlur,
         } = formik;
         return (
-          <form onSubmit={handleSubmit} noValidate>
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className='w-full border border-gray-400 rounded-md px-3 py-8 md:px-5 md:py-12 relative'
+          >
+            <h2 className='text-xl text-center mb-10 sm:text-2xl'>Register</h2>
             <div className='flex justify-between items-center mb-3'>
-              <label>First Name</label>
+              <label className='text-sm sm:text-lg'>First Name</label>
               {errors.first_name && touched.first_name && (
-                <p className='text-red-500 text-sm first-letter:capitalize'>
+                <p className='text-red-500 text-xs first-letter:capitalize sm:text-base'>
                   {errors.first_name}
                 </p>
               )}
@@ -72,12 +77,12 @@ const FormRegister = () => {
               value={values.first_name}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
             <div className='flex justify-between items-center mb-3'>
-              <label>Last name</label>
+              <label className='text-sm sm:text-lg'>Last name</label>
               {errors.last_name && touched.last_name && (
-                <p className='text-red-500 text-sm first-letter:capitalize'>
+                <p className='text-red-500 text-xs first-letter:capitalize sm:text-base'>
                   {errors.last_name}
                 </p>
               )}
@@ -88,12 +93,12 @@ const FormRegister = () => {
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
             <div className='flex justify-between items-center mb-3'>
-              <label>Email</label>
+              <label className='text-sm sm:text-lg'>Email</label>
               {errors.email && touched.email && (
-                <p className='text-red-500 text-sm first-letter:capitalize'>
+                <p className='text-red-500 text-xs first-letter:capitalize sm:text-base'>
                   {errors.email}
                 </p>
               )}
@@ -104,12 +109,12 @@ const FormRegister = () => {
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
             <div className='flex justify-between items-center mb-3'>
-              <label>Password</label>
+              <label className='text-sm sm:text-lg'>Password</label>
               {errors.password && touched.password && (
-                <p className='text-red-500 text-sm first-letter:capitalize'>
+                <p className='text-red-500 text-xs first-letter:capitalize sm:text-base'>
                   {errors.password}
                 </p>
               )}
@@ -120,17 +125,22 @@ const FormRegister = () => {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
-            <button className='border-black border- border-solid '>
+            <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
               Register
             </button>
-            <p>
+            <p className='text-center text-sm sm:text-lg'>
               Already have an account?
               <Link href='/login'>
-                <span>Sign in</span>
+                <span className='ml-1 font-semibold'>Sign in</span>
               </Link>
             </p>
+            {isError && error && 'status' in error && 'data' in error && (
+              <p className='text-red-500 text-xs first-letter:capitalize sm:text-base absolute bottom-3 left-1/2 translate-x-[-50%]'>
+                {(error.data as { error: string }).error}
+              </p>
+            )}
           </form>
         );
       }}

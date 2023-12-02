@@ -46,11 +46,16 @@ const FormLogin = () => {
           handleBlur,
         } = formik;
         return (
-          <form onSubmit={handleSubmit} noValidate>
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className='w-full border border-gray-400 rounded-md px-3 py-8 md:px-5 md:py-12 relative'
+          >
+            <h2 className='text-xl text-center mb-10 sm:text-2xl'>Login</h2>
             <div className='flex justify-between items-center mb-3'>
-              <label>Email</label>
+              <label className='text-sm sm:text-lg'>Email</label>
               {errors.email && touched.email && (
-                <p className='text-red-500 text-sm first-letter:capitalize'>
+                <p className='text-red-500 text-xs first-letter:capitalize sm:text-base'>
                   {errors.email}
                 </p>
               )}
@@ -61,12 +66,12 @@ const FormLogin = () => {
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
             <div className='flex justify-between items-center mb-3'>
-              <label>Password</label>
+              <label className='text-sm sm:text-lg'>Password</label>
               {errors.password && touched.password && (
-                <p className='text-red-500 text-sm first-letter:capitalize'>
+                <p className='text-red-500 text-xs first-letter:capitalize sm:text-base'>
                   {errors.password}
                 </p>
               )}
@@ -77,19 +82,21 @@ const FormLogin = () => {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
-            <button className='border-black border- border-solid '>
+            <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
               Login
             </button>
-            <p>
+            <p className='text-center text-sm sm:text-lg'>
               Don&apos;t have an account?
               <Link href='/register'>
-                <span>Signup</span>
+                <span className='ml-1 font-semibold'>Signup</span>
               </Link>
             </p>
             {isError && error && 'status' in error && 'data' in error && (
-              <p>{(error.data as { error: string }).error}</p>
+              <p className='text-red-500 text-xs first-letter:capitalize sm:text-base absolute bottom-3 left-1/2 translate-x-[-50%]'>
+                {(error.data as { error: string }).error}
+              </p>
             )}
           </form>
         );
