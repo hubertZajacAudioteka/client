@@ -8,6 +8,8 @@ import {
   UserLogoutResponse,
   UserRegisterResponse,
   UserFormAdd,
+  UserFormEdit,
+  DeleteUserResponse,
 } from '@/types/user';
 
 export const userApi = createApi({
@@ -49,6 +51,22 @@ export const userApi = createApi({
           credentials: 'include',
         }),
       }),
+      editUser: builder.mutation<User, UserFormEdit>({
+        query: (userFormEdit: UserFormEdit) => ({
+          url: `/users/${userFormEdit.id}`,
+          method: 'Put',
+          body: userFormEdit,
+          credentials: 'include',
+        }),
+      }),
+      deleteUser: builder.mutation<DeleteUserResponse, string>({
+        query: (id) => ({
+          url: `/users/${id}`,
+          method: 'DELETE',
+          credentials: 'include',
+        }),
+        invalidatesTags: () => ['User'],
+      }),
     };
   },
 });
@@ -58,4 +76,6 @@ export const {
   useRegisterMutation,
   useLogoutMutation,
   useAddUserMutation,
+  useEditUserMutation,
+  useDeleteUserMutation,
 } = userApi;

@@ -35,23 +35,25 @@ const ConfirmDialog = () => {
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className='bg-white p-4 max-w-md rounded shadow-md text-center'
+              className='bg-white p-4 max-w-md rounded shadow-md text-center max-w-[90%]'
             >
-              <h2 className='text-lg font-semibold'>
-                Are you sure you want to delete this element?
-              </h2>
-              <button
-                onClick={handleConfirm}
-                className='mt-4 mx-4 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded'
-              >
-                OK
-              </button>
-              <button
-                onClick={() => dispatch(closeConfirmDialog())}
-                className='mt-4 mx-4 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded'
-              >
-                Cancel
-              </button>
+              <p className='text-lg text-gray-600 mb-4 sm:text-xl'>
+                Are you sure you want to delete this record?
+              </p>
+              <div className='flex flex-col sm:flex-row justify-center sm:space-x-4'>
+                <button
+                  onClick={handleConfirm}
+                  className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:w-auto'
+                >
+                  Confirm Delete
+                </button>
+                <button
+                  onClick={() => dispatch(closeConfirmDialog())}
+                  className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded sm:w-auto'
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         </div>

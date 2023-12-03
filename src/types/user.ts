@@ -47,6 +47,7 @@ export interface UserFormAdd {
 }
 
 export interface UserFormEdit {
+  id?: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -79,4 +80,8 @@ export interface UserRegisterError {
 
 export interface UserLogoutResponse {
   message: string;
+}
+
+export interface DeleteUserResponse {
+  isSuccess: boolean;
 }

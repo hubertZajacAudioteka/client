@@ -12,6 +12,7 @@ import {
 } from '@/store/slices/confirmDialogSlice';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { FaTrash } from 'react-icons/fa';
+import { Endpoint } from '@/types/serverSideRequest';
 
 interface ProductActionProps {
   id: string;
@@ -35,7 +36,7 @@ const ProductAction = ({ id }: ProductActionProps) => {
   const content =
     loggedUser && loggedUser?.role?.name !== 'client' ? (
       <div className='flex justify-center items-center gap-2'>
-        <Link href={`/products/${id}/edit`}>
+        <Link href={`/${Endpoint.Products}/${id}/edit`}>
           <AiTwotoneEdit size={22} />
         </Link>
         <FaTrash className='cursor-pointer' onClick={removeProduct} />
