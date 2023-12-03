@@ -10,6 +10,7 @@ import { logout } from '@/store/slices/userSlice';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Endpoint } from '@/types/serverSideRequest';
+import { FaShopify } from 'react-icons/fa';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,9 @@ const Navbar = () => {
     <header className='bg-gray-600 fixed h-16 w-full mb-5 z-20'>
       <div className='h-16 mx-3 py-3 relative flex justify-between items-center text-slate-50 max-w-[1500px] 2xl:m-auto'>
         <div className='md:flex-1'>
-          <Link href='/'>LOGO</Link>
+          <Link href='/'>
+            <FaShopify size={45} />
+          </Link>
         </div>
         {loggedUser && (
           <div className='flex flex-col items-center justify-center gap-1 w-full md:flex-1'>

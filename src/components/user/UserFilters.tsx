@@ -2,25 +2,25 @@ import React from 'react';
 import Link from 'next/link';
 import {
   Endpoint,
-  GetOrdersByPageParams,
+  GetUsersByPageParams,
   SortDirection,
 } from '@/types/serverSideRequest';
 import { getSortParamTitle } from '@/utlis/getSortParamTitle';
 import { getHref } from '@/utlis/getHref';
-import { SortParamOrder } from '../../types/serverSideRequest';
+import { SortParamUser } from '../../types/serverSideRequest';
 import { MdExpandMore } from 'react-icons/md';
 import { FiSearch } from 'react-icons/fi';
 import { redirect } from 'next/navigation';
 
-interface OrdersFiltersProps {
-  searchParams: GetOrdersByPageParams;
+interface UsersFiltersProps {
+  searchParams: GetUsersByPageParams;
 }
 
-const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
+const UsersFilters = ({ searchParams }: UsersFiltersProps) => {
   const searchRecords = async (formData: FormData) => {
     'use server';
     redirect(
-      getHref(Endpoint.Orders, {
+      getHref(Endpoint.Users, {
         ...searchParams,
         search: formData.get('search') as string,
       })
@@ -54,69 +54,59 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
         </div>
         <div className='opacity-0 transform scale-y-0 origin-top transition-transform duration-300 group-hover:opacity-100 group-hover:scale-y-100 absolute right-0 bg-white text-black py-4 px-8 space-y-2 border-b border-x border-black'>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Date,
+              sortParam: SortParamUser.FirstName,
               sortDirection: SortDirection.Ascending,
             })}
             className='block hover:underline'
           >
-            Oldest
+            First name ascending
           </Link>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Date,
+              sortParam: SortParamUser.FirstName,
               sortDirection: SortDirection.Descending,
             })}
             className='block hover:underline'
           >
-            Newest
+            First name descending
           </Link>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Value,
-              sortDirection: SortDirection.Descending,
-            })}
-            className='block hover:underline'
-          >
-            Highest value
-          </Link>
-          <Link
-            href={getHref(Endpoint.Orders, {
-              ...searchParams,
-              sortParam: SortParamOrder.Value,
+              sortParam: SortParamUser.LastName,
               sortDirection: SortDirection.Ascending,
             })}
             className='block hover:underline'
           >
-            Lowest value
+            Last name ascending
           </Link>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Name,
+              sortParam: SortParamUser.LastName,
               sortDirection: SortDirection.Descending,
             })}
             className='block hover:underline'
           >
-            Name descending
+            Last name descending
           </Link>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Name,
+              sortParam: SortParamUser.Email,
               sortDirection: SortDirection.Ascending,
             })}
             className='block hover:underline'
           >
-            Name ascending
+            Email ascending
           </Link>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Email,
+              sortParam: SortParamUser.Email,
               sortDirection: SortDirection.Descending,
             })}
             className='block hover:underline'
@@ -124,14 +114,24 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
             Email descending
           </Link>
           <Link
-            href={getHref(Endpoint.Orders, {
+            href={getHref(Endpoint.Users, {
               ...searchParams,
-              sortParam: SortParamOrder.Email,
+              sortParam: SortParamUser.Role,
               sortDirection: SortDirection.Ascending,
             })}
             className='block hover:underline'
           >
-            Email ascending
+            Role ascending
+          </Link>
+          <Link
+            href={getHref(Endpoint.Users, {
+              ...searchParams,
+              sortParam: SortParamUser.Role,
+              sortDirection: SortDirection.Descending,
+            })}
+            className='block hover:underline'
+          >
+            Role descending
           </Link>
         </div>
       </div>
@@ -139,4 +139,4 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
   );
 };
 
-export default OrdersFilters;
+export default UsersFilters;

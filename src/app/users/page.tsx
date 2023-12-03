@@ -1,6 +1,8 @@
 import { getRecordsByPageAction } from '@/actions/actions';
+import ButtonAddNew from '@/components/product/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
 import UserAction from '@/components/user/UserAction';
+import UsersFilters from '@/components/user/UserFilters';
 import { Endpoint, GetUsersByPageParams } from '@/types/serverSideRequest';
 import React from 'react';
 
@@ -13,11 +15,17 @@ const UsersPage = async ({
     page: searchParams.page,
     sortParam: searchParams.sortParam,
     sortDirection: searchParams.sortDirection,
+    search: searchParams.search,
   });
 
   const { page, ...filterParams } = searchParams;
+
   return (
     <div>
+      <UsersFilters searchParams={searchParams} />
+      <div className='flex justify-end'>
+        <ButtonAddNew endpoint={Endpoint.Users} />
+      </div>
       <table className='min-w-full table-auto'>
         <thead>
           <tr>

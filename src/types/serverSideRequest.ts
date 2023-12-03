@@ -63,7 +63,9 @@ export interface GetOrdersByPageParams
 }
 
 export interface GetUsersByPageParams
-  extends BasicGetRecordsByPageParams<SortParamUser> {}
+  extends BasicGetRecordsByPageParams<SortParamUser> {
+  search?: string;
+}
 
 export type GetRecordsByPageParams =
   | GetProductsByPageParams
