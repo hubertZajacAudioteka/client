@@ -1,4 +1,3 @@
-import { SortDirection } from './serverSideRequest';
 import { GetOrdersByPageData, Order } from './order';
 import {
   Category,
@@ -6,12 +5,14 @@ import {
   GetProductsByPageData,
   Product,
 } from './product';
+import { GetUsersByPageData, Role, User } from './user';
 
 export enum Endpoint {
   Products = 'products',
   Orders = 'orders',
   Users = 'users',
   Categories = 'categories',
+  Roles = 'roles',
 }
 
 export enum SortDirection {
@@ -31,10 +32,19 @@ export enum SortParamOrder {
   Value = 'value',
 }
 
-export interface GetProductsByPageParams {
+export enum SortParamUser {
+  FirstName = 'first_name',
+  LastName = 'last_name',
+  Email = 'email',
+  Role = 'role',
+}
+
+type SortParamRecord = SortParamProduct | SortParamOrder | SortParamUser;
+
+interface BasicGetRecordsByPageParams<T extends SortParamRecord> {
   page: number;
-  category?: CategoryName;
-  sortParam?: SortParamProduct;
+  sortParam?: T;
+  // this notation states that if sort param is given, sort direction is mandatory
   sortDirection?: SortDirection extends { sortParam: infer P }
     ? P extends SortParamProduct
       ? SortDirection
@@ -42,31 +52,37 @@ export interface GetProductsByPageParams {
     : SortDirection;
 }
 
-export interface GetOrdersByPageParams {
-  page: number;
-  sortParam?: SortParamOrder;
-  sortDirection?: SortDirection extends { sortParam: infer P }
-    ? P extends SortParamOrder
-      ? SortDirection
-      : never
-    : SortDirection;
+export interface GetProductsByPageParams
+  extends BasicGetRecordsByPageParams<SortParamProduct> {
+  category?: CategoryName;
+}
+
+export interface GetOrdersByPageParams
+  extends BasicGetRecordsByPageParams<SortParamOrder> {
   search?: string;
 }
 
+export interface GetUsersByPageParams
+  extends BasicGetRecordsByPageParams<SortParamUser> {}
+
 export type GetRecordsByPageParams =
   | GetProductsByPageParams
-  | GetOrdersByPageParams;
+  | GetOrdersByPageParams
+  | GetUsersByPageParams;
 
 export type EndpointDataByPageMap = {
   products: GetProductsByPageData;
   orders: GetOrdersByPageData;
+  users: GetUsersByPageData;
 };
 
 export type EndpointDataSingleRecordMap = {
   products: Product;
   orders: Order;
+  users: User;
 };
 
 export type EndpointDataRecordsMap = {
   categories: Category[];
+  roles: Role[];
 };

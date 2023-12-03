@@ -4,7 +4,7 @@ import { getAllRecords } from '@/actions/actions';
 import { Endpoint } from '@/types/serverSideRequest';
 
 const AddNewProductPage = async () => {
-  const categories: Category[] = await getAllRecords(Endpoint.Categories);
+  const categories = await getAllRecords(Endpoint.Categories);
 
   return (
     <div className='m-auto max-w-xl'>

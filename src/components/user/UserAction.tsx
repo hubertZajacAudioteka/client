@@ -2,21 +2,17 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { BsFillEyeFill } from 'react-icons/bs';
 import { FaTrash } from 'react-icons/fa';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { Endpoint } from '@/types/serverSideRequest';
 
-interface OrderActionProps {
+interface UserActionProps {
   id: string;
 }
 
-const OrderAction = ({ id }: OrderActionProps) => {
+const UserAction = ({ id }: UserActionProps) => {
   return (
     <div className='flex justify-center items-center gap-2'>
-      <Link href={`/${Endpoint.Orders}/${id}`}>
-        <BsFillEyeFill />
-      </Link>
       <Link href={`/${Endpoint.Orders}/${id}/edit`}>
         <AiTwotoneEdit />
       </Link>
@@ -25,4 +21,4 @@ const OrderAction = ({ id }: OrderActionProps) => {
   );
 };
 
-export default OrderAction;
+export default UserAction;

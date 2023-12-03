@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL_CLIENT } from '@/constants/api';
 import {
+  User,
   UserFormLogin,
   UserFormRegister,
   UserLoginResponse,
   UserLogoutResponse,
   UserRegisterResponse,
+  UserFormAdd,
 } from '@/types/user';
 
 export const userApi = createApi({
@@ -39,9 +41,21 @@ export const userApi = createApi({
           credentials: 'include',
         }),
       }),
+      addUser: builder.mutation<User, UserFormAdd>({
+        query: (userFormAdd: UserFormAdd) => ({
+          url: '/users',
+          method: 'POST',
+          body: userFormAdd,
+          credentials: 'include',
+        }),
+      }),
     };
   },
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation } =
-  userApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useLogoutMutation,
+  useAddUserMutation,
+} = userApi;

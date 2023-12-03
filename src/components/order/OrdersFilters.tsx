@@ -27,7 +27,7 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
     );
   };
   return (
-    <div className='flex flex-col items-center mb-2 md:flex-row md:justify-between md:mb-5'>
+    <div className='flex flex-col items-center mb-2 md:flex-row md:justify-between md:mb-10'>
       <form
         action={searchRecords}
         className='flex items-center border border-gray-300 p-1'
@@ -47,10 +47,12 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
       </form>
       <div className='relative group w-fit right-0'>
         <div className='flex items-center gap-1 p-2 cursor-pointer'>
-          <h4> {getSortParamTitle(searchParams)}</h4>
-          <MdExpandMore size={20} />
+          <h4 className='uppercase font-semibold tex-lg md:text-xl'>
+            {getSortParamTitle(searchParams)}
+          </h4>
+          <MdExpandMore size={24} />
         </div>
-        <div className='opacity-0 transform scale-y-0 origin-top transition-transform duration-300 group-hover:opacity-100 group-hover:scale-y-100 absolute right-0 bg-white text-black p-4 space-y-2'>
+        <div className='opacity-0 transform scale-y-0 origin-top transition-transform duration-300 group-hover:opacity-100 group-hover:scale-y-100 absolute right-0 bg-white text-black py-4 px-8 space-y-2 border-b border-x border-black'>
           <Link
             href={getHref(Endpoint.Orders, {
               ...searchParams,

@@ -9,6 +9,7 @@ import { useLogoutMutation } from '@/store/apis/userApi';
 import { logout } from '@/store/slices/userSlice';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
+import { Endpoint } from '@/types/serverSideRequest';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -87,13 +88,27 @@ const Navbar = () => {
         >
           <ul className='flex flex-col gap-2 items-center py-4 md:flex-row'>
             <li className='hover:text-red-200'>
-              <Link onClick={handleLinkClick} href='/products?page=1'>
+              <Link
+                onClick={handleLinkClick}
+                href={`/${Endpoint.Products}?page=1`}
+              >
                 Products
               </Link>
             </li>
             <li className='hover:text-red-200'>
-              <Link onClick={handleLinkClick} href='/orders?page=1'>
+              <Link
+                onClick={handleLinkClick}
+                href={`/${Endpoint.Orders}?page=1`}
+              >
                 Orders
+              </Link>
+            </li>
+            <li className='hover:text-red-200'>
+              <Link
+                onClick={handleLinkClick}
+                href={`/${Endpoint.Users}?page=1`}
+              >
+                Users
               </Link>
             </li>
             {loggedUser ? (

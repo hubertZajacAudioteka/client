@@ -1,4 +1,4 @@
-enum RoleName {
+export enum RoleName {
   Admin = 'admin',
   Employee = 'employee',
   Client = 'client',
@@ -6,7 +6,7 @@ enum RoleName {
 
 export interface Role {
   id: string;
-  name: string;
+  name: RoleName;
 }
 
 export interface User {
@@ -16,6 +16,14 @@ export interface User {
   email: string;
   password?: string;
   role?: Role;
+}
+
+export interface GetUsersByPageData {
+  data: User[];
+  meta: {
+    per_page: number;
+    total: number;
+  };
 }
 
 export interface UserFormRegister {
@@ -35,7 +43,14 @@ export interface UserFormAdd {
   last_name: string;
   email: string;
   password: string;
-  roleName: RoleName;
+  role: RoleName;
+}
+
+export interface UserFormEdit {
+  first_name: string;
+  last_name: string;
+  email: string;
+  role: RoleName;
 }
 
 export interface UserLoginResponse {
