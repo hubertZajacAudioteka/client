@@ -227,8 +227,9 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
                 </option>
               ))}
             </select>
-            <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
+            <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg relative'>
               Add product
+              {}
             </button>
             {isError && error && 'status' in error && 'data' in error && (
               <p className='text-red-500 text-xs first-letter:capitalize sm:text-base absolute bottom-3 left-1/2 translate-x-[-50%]'>

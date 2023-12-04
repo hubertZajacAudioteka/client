@@ -27,6 +27,7 @@ export const orderApi = createApi({
         query: (id) => ({
           url: `/orders/${id}`,
           method: 'DELETE',
+          credentials: 'include',
         }),
         invalidatesTags: ['Order'],
       }),
@@ -43,4 +44,8 @@ export const orderApi = createApi({
   },
 });
 
-export const { useAddOrderMutation, useFetchSecretKeyMutation } = orderApi;
+export const {
+  useAddOrderMutation,
+  useFetchSecretKeyMutation,
+  useDeleteOrderMutation,
+} = orderApi;

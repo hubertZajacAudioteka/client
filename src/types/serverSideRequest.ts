@@ -5,6 +5,7 @@ import {
   GetProductsByPageData,
   Product,
 } from './product';
+import { Sale } from './statistic';
 import { GetUsersByPageData, Role, User } from './user';
 
 export enum Endpoint {
@@ -13,6 +14,7 @@ export enum Endpoint {
   Users = 'users',
   Categories = 'categories',
   Roles = 'roles',
+  Sales = 'sales',
 }
 
 export enum SortDirection {
@@ -87,4 +89,5 @@ export type EndpointDataSingleRecordMap = {
 export type EndpointDataRecordsMap = {
   categories: Category[];
   roles: Role[];
+  sales: Sale[];
 };
