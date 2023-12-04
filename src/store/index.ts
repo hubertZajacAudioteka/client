@@ -2,7 +2,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import userReducer from './slices/userSlice';
-import orderReducer from './slices/orderSlice';
+import createOrderReducer from './slices/createOrderSlice';
+import editOrderReducer from './slices/editOrderSlice';
 import popupReducer from './slices/popupSlice';
 import confirmDialogReducer from './slices/confirmDialogSlice';
 import {
@@ -23,12 +24,13 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['user', 'order'],
+  whitelist: ['user', 'createOrder'],
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
-  order: orderReducer,
+  createOrder: createOrderReducer,
+  editOrder: editOrderReducer,
   popup: popupReducer,
   confirmDialog: confirmDialogReducer,
   [userApi.reducerPath]: userApi.reducer,

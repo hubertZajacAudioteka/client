@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addProductToOrder } from '@/store/slices/orderSlice';
+import { addProductToOrder } from '@/store/slices/createOrderSlice';
 import { Product } from '@/types/product';
 
 interface ButtonBuyProps {

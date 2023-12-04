@@ -19,7 +19,7 @@ const Navbar = () => {
   const [logoutUser] = useLogoutMutation();
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser);
   const itemsQuantity = useSelector(
-    (state: RootState) => state.order.itemsQuantity
+    (state: RootState) => state.createOrder.itemsQuantity
   );
 
   useEffect(() => {

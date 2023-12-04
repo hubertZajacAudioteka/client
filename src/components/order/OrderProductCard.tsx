@@ -6,7 +6,7 @@ import Image from 'next/image';
 import {
   addProductToOrder,
   removeProductFromOrder,
-} from '@/store/slices/orderSlice';
+} from '@/store/slices/createOrderSlice';
 import { OrderedProduct } from '@/types/product';
 import { BiSolidUpArrow, BiSolidDownArrow } from 'react-icons/bi';
 

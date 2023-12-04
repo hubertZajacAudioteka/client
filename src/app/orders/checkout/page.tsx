@@ -20,7 +20,7 @@ const CheckoutOrderPage = () => {
   );
 
   const orderedProducts = useSelector(
-    (state: RootState) => state.order.orderedProducts
+    (state: RootState) => state.createOrder.orderedProducts
   );
   const products = orderedProducts.map((product) => {
     return {

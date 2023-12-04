@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 const NewOrderPage = () => {
   const router = useRouter();
   const orderedProducts = useSelector(
-    (state: RootState) => state.order.orderedProducts
+    (state: RootState) => state.createOrder.orderedProducts
   );
-  const orderValue = useSelector((state: RootState) => state.order.value);
+  const orderValue = useSelector((state: RootState) => state.createOrder.value);
 
   return (
     <div className='max-w-xl mx-auto'>

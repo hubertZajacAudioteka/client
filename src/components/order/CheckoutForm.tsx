@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { useRouter } from 'next/navigation';
-import { clearOrder } from '@/store/slices/orderSlice';
+import { clearOrder } from '@/store/slices/createOrderSlice';
 import { useAddOrderMutation } from '@/store/apis/orderApi';
 import { StripePaymentElementOptions } from '@stripe/stripe-js';
 import {
@@ -22,9 +22,9 @@ export default function CheckoutForm() {
   const [addOrder] = useAddOrderMutation();
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const orderValue = useSelector((state: RootState) => state.order.value);
+  const orderValue = useSelector((state: RootState) => state.createOrder.value);
   const orderedProducts = useSelector(
-    (state: RootState) => state.order.orderedProducts
+    (state: RootState) => state.createOrder.orderedProducts
   ).map((product) => ({ id: product.id, quantity: product.quantity }));
 
   useEffect(() => {
