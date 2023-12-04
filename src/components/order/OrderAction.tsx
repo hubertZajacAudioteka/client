@@ -9,21 +9,18 @@ import { Endpoint } from '@/types/serverSideRequest';
 import { useDispatch } from 'react-redux';
 import {
   openConfirmDialog,
-  setDeleteFunction,
-  setIdRecordToDelete,
+  setRecordToDelete,
+  TypeRecordToDelete,
 } from '@/store/slices/confirmDialogSlice';
-import { useDeleteOrderMutation } from '@/store/apis/orderApi';
 
 interface OrderActionProps {
   id: string;
 }
 
 const OrderAction = ({ id }: OrderActionProps) => {
-  const [deleteOrder] = useDeleteOrderMutation();
   const dispatch = useDispatch();
   const removeOrder = () => {
-    dispatch(setIdRecordToDelete(id));
-    dispatch(setDeleteFunction({ deleteFunction: deleteOrder }));
+    dispatch(setRecordToDelete({ id, type: TypeRecordToDelete.Order }));
     dispatch(openConfirmDialog());
   };
 

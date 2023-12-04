@@ -4,15 +4,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { RootState } from '@/store';
-import { useDeleteProductMutation } from '@/store/apis/productApi';
 import {
   openConfirmDialog,
-  setDeleteFunction,
-  setIdRecordToDelete,
+  setRecordToDelete,
 } from '@/store/slices/confirmDialogSlice';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { FaTrash } from 'react-icons/fa';
 import { Endpoint } from '@/types/serverSideRequest';
+import { TypeRecordToDelete } from '../../store/slices/confirmDialogSlice';
 
 interface ProductActionProps {
   id: string;
@@ -21,15 +20,9 @@ interface ProductActionProps {
 const ProductAction = ({ id }: ProductActionProps) => {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser);
-  const [deleteProduct] = useDeleteProductMutation();
 
   const removeProduct = () => {
-    dispatch(setIdRecordToDelete(id));
-    dispatch(
-      setDeleteFunction({
-        deleteFunction: deleteProduct,
-      })
-    );
+    dispatch(setRecordToDelete({ id, type: TypeRecordToDelete.Product }));
     dispatch(openConfirmDialog());
   };
 
