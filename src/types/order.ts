@@ -1,15 +1,17 @@
 import { Product } from './product';
 import { User } from './user';
 
+export interface OrderItem {
+  quantity: number;
+  product: Product;
+}
+
 export interface Order {
   id: string;
   created_at: string;
   value: number;
   user: User;
-  order_items: {
-    quantity: number;
-    product: Product;
-  }[];
+  order_items: OrderItem[];
 }
 
 export interface AddOrderValues {
@@ -33,4 +35,10 @@ export interface DeleteOrderResponse {
 
 export interface FetchClientResponse {
   clientSecret: string;
+}
+
+export interface EditOrderValues {
+  id: string;
+  created_at: Date;
+  products: { id: string; quantity: number }[];
 }

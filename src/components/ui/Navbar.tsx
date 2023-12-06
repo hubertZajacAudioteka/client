@@ -114,6 +114,14 @@ const Navbar = () => {
                 Users
               </Link>
             </li>
+            <li className='hover:text-red-200'>
+              <Link
+                onClick={handleLinkClick}
+                href={`/${Endpoint.Sales}?page=1`}
+              >
+                Sales
+              </Link>
+            </li>
             {loggedUser ? (
               <li>
                 <button

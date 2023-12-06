@@ -2,8 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   AddOrderValues,
   DeleteOrderResponse,
+  EditOrderValues,
   FetchClientResponse,
   Order,
+  OrderItem,
 } from '@/types/order';
 import { API_URL_CLIENT } from '@/constants/api';
 
@@ -40,6 +42,18 @@ export const orderApi = createApi({
         }),
         invalidatesTags: ['Order'],
       }),
+      editOrder: builder.mutation<OrderItem, EditOrderValues>({
+        query: (editOrderValues) => ({
+          url: `/orders/${editOrderValues.id}`,
+          method: 'PUT',
+          body: {
+            created_at: editOrderValues.created_at,
+            products: editOrderValues.products,
+          },
+          credentials: 'include',
+        }),
+        invalidatesTags: ['Order'],
+      }),
     };
   },
 });
@@ -47,5 +61,6 @@ export const orderApi = createApi({
 export const {
   useAddOrderMutation,
   useFetchSecretKeyMutation,
+  useEditOrderMutation,
   useDeleteOrderMutation,
 } = orderApi;

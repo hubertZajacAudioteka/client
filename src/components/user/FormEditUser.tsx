@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import SpinnerBtn from '../ui/SpinnerBtn';
 
 interface FormEditUserProps {
   roles: Role[];
@@ -15,7 +16,7 @@ interface FormEditUserProps {
 
 const FormEditUser = ({ roles, user }: FormEditUserProps) => {
   const router = useRouter();
-  const [editUser, { isError, error }] = useEditUserMutation();
+  const [editUser, { isError, error, isLoading }] = useEditUserMutation();
   const dispatch = useDispatch();
 
   const initialValues: UserFormEdit = {
@@ -135,6 +136,7 @@ const FormEditUser = ({ roles, user }: FormEditUserProps) => {
             </select>
             <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
               Edit user
+              {isLoading && <SpinnerBtn />}
             </button>
             {isError && error && 'status' in error && 'data' in error && (
               <p className='text-red-500 text-xs first-letter:capitalize sm:text-base absolute bottom-3 left-1/2 translate-x-[-50%]'>

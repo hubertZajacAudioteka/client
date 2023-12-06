@@ -8,9 +8,10 @@ import { Formik } from 'formik';
 import { useLoginMutation, useRegisterMutation } from '@/store/apis/userApi';
 import { setLoggedUser } from '@/store/slices/userSlice';
 import { UserFormRegister } from '../../types/user';
+import SpinnerBtn from '../ui/SpinnerBtn';
 
 const FormRegister = () => {
-  const [register, { error, isError }] = useRegisterMutation();
+  const [register, { error, isError, isLoading }] = useRegisterMutation();
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
@@ -129,6 +130,7 @@ const FormRegister = () => {
             />
             <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
               Register
+              {isLoading && <SpinnerBtn />}
             </button>
             <p className='text-center text-sm sm:text-lg'>
               Already have an account?

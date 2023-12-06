@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { openPopup } from '@/store/slices/popupSlice';
 import { Category, FormAddProduct } from '@/types/product';
 import { ALLOWED_TYPES } from '@/constants/forms';
+import SpinnerBtn from '../ui/SpinnerBtn';
 
 interface FormAddProductProps {
   categories: Category[];
@@ -15,7 +16,7 @@ interface FormAddProductProps {
 
 const FormAddProduct = ({ categories }: FormAddProductProps) => {
   const router = useRouter();
-  const [addProduct, { isError, error }] = useAddProductMutation();
+  const [addProduct, { isError, error, isLoading }] = useAddProductMutation();
   const dispatch = useDispatch();
   const [uploadedFileName, setUploadedFileName] = useState<string>('');
 
@@ -229,7 +230,7 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
             </select>
             <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg relative'>
               Add product
-              {}
+              {isLoading && <SpinnerBtn />}
             </button>
             {isError && error && 'status' in error && 'data' in error && (
               <p className='text-red-500 text-xs first-letter:capitalize sm:text-base absolute bottom-3 left-1/2 translate-x-[-50%]'>

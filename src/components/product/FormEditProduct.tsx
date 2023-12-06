@@ -9,6 +9,7 @@ import { useEditProductMutation } from '@/store/apis/productApi';
 import { openPopup } from '@/store/slices/popupSlice';
 import { Category, FormEditProduct, Product } from '@/types/product';
 import { ALLOWED_TYPES } from '@/constants/forms';
+import SpinnerBtn from '../ui/SpinnerBtn';
 
 interface FormEditProductProps {
   categories: Category[];
@@ -18,7 +19,7 @@ interface FormEditProductProps {
 const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [editProduct, { isError, error }] = useEditProductMutation();
+  const [editProduct, { isError, error, isLoading }] = useEditProductMutation();
   const [uploadedFileName, setUploadedFileName] = useState<string>(
     product.image
   );
@@ -240,6 +241,7 @@ const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
             </select>
             <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
               Edit product
+              {isLoading && <SpinnerBtn />}
             </button>
             {isError && error && 'status' in error && 'data' in error && (
               <p className='text-red-500 text-xs first-letter:capitalize sm:text-base absolute bottom-3 left-1/2 translate-x-[-50%]'>

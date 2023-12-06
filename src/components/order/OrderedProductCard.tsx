@@ -32,7 +32,7 @@ const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
           </h3>
           <p className='text-sm sm:text-lg'>
             <span className='font-semibold mr-2'>Price:</span>
-            {product.price}€
+            {product.price.toFixed(2)}€
           </p>
         </div>
         <div className='flex justify-between items-center'>
@@ -40,18 +40,7 @@ const OrderedProductCard = ({ product }: OrderedProductCardProps) => {
             <div>
               <div
                 className='cursor-pointer'
-                onClick={() =>
-                  dispatch(
-                    addProductToOrder({
-                      id: product.id,
-                      category: product.category,
-                      description: product.description,
-                      image: product.image,
-                      price: product.price,
-                      title: product.title,
-                    })
-                  )
-                }
+                onClick={() => dispatch(addProductToOrder(product))}
               >
                 <BiSolidUpArrow />
               </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import OrderedProductCard from '@/components/order/OrderProductCard';
+import OrderedProductCard from '@/components/order/OrderedProductCard';
 import { RootState } from '@/store';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';

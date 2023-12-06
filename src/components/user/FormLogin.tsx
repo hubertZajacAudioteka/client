@@ -8,9 +8,10 @@ import Link from 'next/link';
 import { UserFormLogin } from '@/types/user';
 import { useLoginMutation } from '@/store/apis/userApi';
 import { setLoggedUser } from '@/store/slices/userSlice';
+import SpinnerBtn from '../ui/SpinnerBtn';
 
 const FormLogin = () => {
-  const [login, { error, isError }] = useLoginMutation();
+  const [login, { error, isError, isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
 
   const initialValues: UserFormLogin = {
@@ -86,6 +87,7 @@ const FormLogin = () => {
             />
             <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
               Login
+              {isLoading && <SpinnerBtn />}
             </button>
             <p className='text-center text-sm sm:text-lg'>
               Don&apos;t have an account?

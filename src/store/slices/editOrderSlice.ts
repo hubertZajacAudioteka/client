@@ -5,12 +5,10 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface EditOrderState {
   orderToEdit: Order | null;
-  value: number;
 }
 
 const initialState: EditOrderState = {
   orderToEdit: null,
-  value: 0,
 };
 
 export const editOrderSlice = createSlice({
@@ -21,22 +19,20 @@ export const editOrderSlice = createSlice({
       state.orderToEdit = action.payload;
     },
     addProductToEditedOrder: (state, action: PayloadAction<Product>) => {
-      const foundIndex = state.orderToEdit?.order_items.findIndex(
-        (orderItem) => orderItem.product.id === action.payload.id
-      );
-
       if (state.orderToEdit) {
-        state.value += action.payload.price;
+        const foundIndex = state.orderToEdit?.order_items.findIndex(
+          (orderItem) => orderItem.product.id === action.payload.id
+        );
 
-        if (foundIndex === -1 || !foundIndex) {
+        if (foundIndex === -1) {
           state.orderToEdit.order_items = [
             ...state.orderToEdit.order_items,
             { quantity: 1, product: action.payload },
           ];
         } else {
           state.orderToEdit.order_items = state.orderToEdit.order_items.map(
-            (orderItem, index) =>
-              index === foundIndex
+            (orderItem) =>
+              orderItem.product.id === action.payload.id
                 ? { ...orderItem, quantity: orderItem.quantity + 1 }
                 : orderItem
           );
@@ -47,9 +43,8 @@ export const editOrderSlice = createSlice({
       const foundIndex = state.orderToEdit?.order_items.findIndex(
         (orderItem) => orderItem.product.id === action.payload
       );
-      if (state.orderToEdit && foundIndex !== -1 && foundIndex) {
-        const orderItem = state.orderToEdit.order_items[foundIndex];
-        state.value -= orderItem.product.price;
+      if (state.orderToEdit && foundIndex !== -1) {
+        const orderItem = state.orderToEdit.order_items[foundIndex!];
 
         if (orderItem.quantity > 1) {
           state.orderToEdit.order_items = state.orderToEdit.order_items.map(
@@ -67,7 +62,6 @@ export const editOrderSlice = createSlice({
     },
     clearOrderToEdit: (state) => {
       state.orderToEdit = null;
-      state.value = 0;
     },
   },
 });
