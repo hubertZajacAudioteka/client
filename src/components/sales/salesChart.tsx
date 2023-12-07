@@ -1,6 +1,6 @@
 'use client';
 
-import { Sale } from '@/types/statistic';
+import { Sale } from '@/types/sale';
 import React from 'react';
 import {
   LineChart,

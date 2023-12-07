@@ -1,16 +1,6 @@
+import { RecordToDelete } from '@/types/record';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export enum TypeRecordToDelete {
-  Product = 'product',
-  Order = 'Order',
-  User = 'User',
-}
-
-interface RecordToDelete {
-  id: string;
-  type: TypeRecordToDelete;
-}
 
 export interface ConfirmDialogState {
   isOpen: boolean;

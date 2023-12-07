@@ -5,7 +5,7 @@ import {
   GetProductsByPageData,
   Product,
 } from './product';
-import { Sale } from './statistic';
+import { Sale } from './sale';
 import { GetUsersByPageData, Role, User } from './user';
 
 export enum Endpoint {

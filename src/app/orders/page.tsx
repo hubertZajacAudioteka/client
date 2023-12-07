@@ -1,10 +1,9 @@
-import { GetOrdersByPageData } from '@/types/order';
 import { formatDate } from '@/utlis/formatDate';
-import OrderAction from '@/components/order/OrderAction';
 import Pagination from '@/components/ui/Pagination';
 import { getRecordsByPageAction } from '@/actions/actions';
 import { Endpoint, GetOrdersByPageParams } from '@/types/serverSideRequest';
 import OrdersFilters from '@/components/order/OrdersFilters';
+import RecordAction from '@/components/ui/RecordAction';
 
 const OrdersPage = async ({
   searchParams,
@@ -49,7 +48,7 @@ const OrdersPage = async ({
                 {order.user.email}
               </td>
               <td className='border px-4 py-2 text-center'>
-                <OrderAction id={order.id} />
+                <RecordAction id={order.id} endpoint={Endpoint.Orders} />
               </td>
             </tr>
           ))}

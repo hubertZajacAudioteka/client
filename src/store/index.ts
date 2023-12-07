@@ -19,6 +19,7 @@ import {
 import { userApi } from './apis/userApi';
 import { orderApi } from './apis/orderApi';
 import { productApi } from './apis/productApi';
+import { recordApi } from './apis/recordApi';
 
 const persistConfig = {
   key: 'root',
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
   [orderApi.reducerPath]: orderApi.reducer,
   [productApi.reducerPath]: productApi.reducer,
+  [recordApi.reducerPath]: recordApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -50,7 +52,8 @@ export const store = configureStore({
     })
       .concat(userApi.middleware)
       .concat(orderApi.middleware)
-      .concat(productApi.middleware),
+      .concat(productApi.middleware)
+      .concat(recordApi.middleware),
 });
 
 export const persistor = persistStore(store);

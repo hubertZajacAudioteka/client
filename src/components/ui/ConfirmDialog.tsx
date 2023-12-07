@@ -4,13 +4,12 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import {
-  TypeRecordToDelete,
-  closeConfirmDialog,
-} from '@/store/slices/confirmDialogSlice';
+import { closeConfirmDialog } from '@/store/slices/confirmDialogSlice';
 import { useDeleteProductMutation } from '@/store/apis/productApi';
 import { useDeleteUserMutation } from '@/store/apis/userApi';
 import { useDeleteOrderMutation } from '@/store/apis/orderApi';
+import { useDeleteRecordMutation } from '@/store/apis/recordApi';
+import SpinnerBtn from './SpinnerBtn';
 
 const ConfirmDialog = () => {
   const router = useRouter();
@@ -20,29 +19,17 @@ const ConfirmDialog = () => {
     (state: RootState) => state.confirmDialog.recordToDelete
   );
 
-  const [deleteProduct] = useDeleteProductMutation();
-  const [deleteUser] = useDeleteUserMutation();
-  const [deleteOrder] = useDeleteOrderMutation();
+  const [deleteRecord, { isLoading }] = useDeleteRecordMutation();
 
   const handleConfirm = async () => {
     if (recordToDelete) {
-      switch (recordToDelete.type) {
-        case TypeRecordToDelete.Product:
-          await deleteProduct(recordToDelete.id);
-          break;
-        case TypeRecordToDelete.User:
-          await deleteUser(recordToDelete.id);
-          break;
-        case TypeRecordToDelete.Order:
-          await deleteOrder(recordToDelete.id);
-          break;
-        default:
-          closeConfirmDialog();
-      }
+      await deleteRecord(recordToDelete);
       router.refresh();
       dispatch(closeConfirmDialog());
     }
   };
+
+  const test = true;
 
   return (
     <>
@@ -62,13 +49,14 @@ const ConfirmDialog = () => {
               <div className='flex flex-col sm:flex-row justify-center sm:space-x-4'>
                 <button
                   onClick={handleConfirm}
-                  className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:w-auto'
+                  className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:w-auto relative sm:px-10'
                 >
                   Confirm Delete
+                  {isLoading && <SpinnerBtn />}
                 </button>
                 <button
                   onClick={() => dispatch(closeConfirmDialog())}
-                  className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded sm:w-auto'
+                  className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded sm:w-auto sm:px-10'
                 >
                   Cancel
                 </button>

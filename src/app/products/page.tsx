@@ -35,7 +35,7 @@ const ProductsPage = async (params: {
   return (
     <>
       <div className='flex gap-4'>
-        <div className='flex flex-col fixed top-1/5 right-2 w-[28%] md:pl-10'>
+        <div className='flex flex-col fixed top-1/5 right-2 w-[28%] md:pl-10 2xl:pl-0 max-w-xs 2xl:right-1/2 2xl:translate-x-[750px]'>
           <ButtonAddNew endpoint={Endpoint.Products} />
           <h3 className='font-semibold text-large mb-3 md:text-xl md:mb-5 xl:text-2xl xl:font-bold'>
             Category

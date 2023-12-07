@@ -3,8 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types/product';
 import ButtonBuy from './ButtonBuy';
-import ProductAction from './ProductAction';
 import { STORAGE } from '@/constants/api';
+import RecordAction from '../ui/RecordAction';
+import { Endpoint } from '@/types/serverSideRequest';
 
 interface ProductCardProps {
   product: Product;
@@ -41,7 +42,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div className={`${bgColor} rounded-md p-2 text-white`}>
             <p className='text-sm'>{product.category.name}</p>
           </div>
-          {<ProductAction id={product.id} />}
+          <RecordAction id={product.id} endpoint={Endpoint.Products} />
         </div>
         <h3 className='text-md font-semibold mb-1'>
           ${product.price.toFixed(2)}

@@ -2,8 +2,9 @@ import { STORAGE } from '@/constants/api';
 import { Product } from '@/types/product';
 import Image from 'next/image';
 import React from 'react';
-import ProductAction from './ProductAction';
 import ButtonBuy from './ButtonBuy';
+import RecordAction from '../ui/RecordAction';
+import { Endpoint } from '@/types/serverSideRequest';
 
 interface SingleProductProps {
   product: Product;
@@ -40,7 +41,7 @@ const SingleProduct = ({ product, isReadOnly }: SingleProductProps) => {
         <p className='text-base text-center mb-3'>{product.description}</p>
         {!isReadOnly && (
           <div className='flex justify-end gap-4'>
-            <ProductAction id={product.id} />
+            <RecordAction id={product.id} endpoint={Endpoint.Products} />
             <ButtonBuy product={product} />
           </div>
         )}

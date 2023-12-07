@@ -1,5 +1,5 @@
 import { getAllRecords } from '@/actions/actions';
-import SalesChart from '@/components/statistic/salesChart';
+import SalesChart from '@/components/sales/salesChart';
 import { Endpoint } from '@/types/serverSideRequest';
 import React from 'react';
 
