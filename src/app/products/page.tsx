@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ButtonAddNew from '@/components/product/ButtonAddNew';
+import ButtonAddNew from '@/components/ui/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
 import ProductCard from '@/components/product/ProductCard';
 import { getAllRecords, getRecordsByPageAction } from '@/actions/actions';

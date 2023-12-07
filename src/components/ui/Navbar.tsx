@@ -52,13 +52,13 @@ const Navbar = () => {
   return (
     <header className='bg-gray-600 fixed h-16 w-full mb-5 z-20'>
       <div className='h-16 mx-3 py-3 relative flex justify-between items-center text-slate-50 max-w-[1500px] 2xl:m-auto'>
-        <div className='md:flex-1'>
+        <div className='lg:flex-1'>
           <Link href='/'>
             <FaShopify size={45} />
           </Link>
         </div>
         {loggedUser && (
-          <div className='flex flex-col items-center justify-center gap-1 w-full md:flex-1'>
+          <div className='flex flex-col items-center justify-center gap-1 w-full lg:flex-1'>
             <p>
               {loggedUser.first_name} {loggedUser.last_name}
             </p>
@@ -72,13 +72,13 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        <div className='cursor-pointer text-white md:hidden'>
+        <div className='cursor-pointer text-white lg:hidden'>
           {!isOpen ? (
             <BiMenuAltLeft size={30} onClick={() => setIsOpen(true)} />
           ) : (
             <AiOutlineClose
               color='white'
-              size={24}
+              size={30}
               onClick={() => setIsOpen(false)}
             />
           )}
@@ -86,10 +86,10 @@ const Navbar = () => {
 
         <nav
           className={`bg-slate-400 transition-all duration-500 absolute p-4 top-0 navbar-menu ${
-            isOpen ? 'left-[-16px]' : 'left-[-140px]'
-          } w-[120px] h-[200px] z-10  md:static md:h-auto md:bg-transparent md:flex justify-end md:flex-1`}
+            isOpen ? 'left-[-18px]' : 'left-[-218px]'
+          } w-[200px] h-[240px] z-10  lg:static lg:h-auto lg:bg-transparent lg:flex justify-end lg:flex-1`}
         >
-          <ul className='flex flex-col gap-2 items-center py-4 md:flex-row'>
+          <ul className='flex flex-col gap-2 items-center py-4 lg:flex-row lg:gap-4'>
             <li className='hover:text-red-200'>
               <Link
                 onClick={handleLinkClick}

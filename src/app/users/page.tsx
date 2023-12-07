@@ -1,7 +1,7 @@
 import { getRecordsByPageAction } from '@/actions/actions';
-import ButtonAddNew from '@/components/product/ButtonAddNew';
+import ButtonAddNew from '@/components/ui/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
-import UserAction from '@/components/user/UserAction';
+import RecordAction from '@/components/ui/RecordAction';
 import UsersFilters from '@/components/user/UserFilters';
 import { Endpoint, GetUsersByPageParams } from '@/types/serverSideRequest';
 import React from 'react';
@@ -50,7 +50,7 @@ const UsersPage = async ({
                 {user.role?.name}
               </td>
               <td className='border px-4 py-2 text-center'>
-                <UserAction id={user.id} />
+                <RecordAction id={user.id} endpoint={Endpoint.Users} />
               </td>
             </tr>
           ))}

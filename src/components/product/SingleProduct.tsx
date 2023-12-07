@@ -5,6 +5,8 @@ import React from 'react';
 import ButtonBuy from './ButtonBuy';
 import RecordAction from '../ui/RecordAction';
 import { Endpoint } from '@/types/serverSideRequest';
+import { getImageSrc } from '@/utlis/getImageSrc';
+import { getCategoryBgColor } from '@/utlis/getCategoryBgColor';
 
 interface SingleProductProps {
   product: Product;
@@ -12,21 +14,17 @@ interface SingleProductProps {
 }
 
 const SingleProduct = ({ product, isReadOnly }: SingleProductProps) => {
-  const imageSrc = product.image.startsWith('images')
-    ? `${STORAGE}/${product.image}`
-    : product.image;
-
-  const bgColor =
-    product.category.name === 'newest'
-      ? 'bg-blue-800'
-      : product.category.name === 'regular'
-      ? 'bg-purple-500'
-      : 'bg-lime-400';
+  const bgColor = getCategoryBgColor(product.category.name);
 
   return (
     <div className='max-w-xl mx-auto'>
       <div className='w-full h-52 mb-5 md:h-72'>
-        <Image src={imageSrc} width={200} height={200} alt={product.title} />
+        <Image
+          src={getImageSrc(product.image)}
+          width={580}
+          height={300}
+          alt={product.title}
+        />
       </div>
       <div>
         <h2 className='text-xl font-semibold text-center capitalize mb-3'>

@@ -24,6 +24,10 @@ const OrderPage = async ({
           <span className='font-semibold capitalize mr-1'>Purchaser:</span>
           {order.user.first_name} {order.user.last_name}
         </h4>
+        <h4 className='capitalize text-base mb-2'>
+          <span className='font-semibold capitalize mr-1'>Order Value:</span>
+          {order.value}
+        </h4>
         <h4 className='capitalize text-base mb-2 font-semibold'>
           Ordered products:
         </h4>

@@ -22,13 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={`${inter.className}`}>
         <StoreProvider>
           <PersistStoreProvider>
             <Navbar />
             <MessagePopup />
             <ConfirmDialog />
-            <main className='mx-3 max-w-[1500px] pt-20 2xl:m-auto '>
+            <main className='mx-3 max-w-[1500px] pt-20 2xl:m-auto min-h-[calc(100vh-64px)]'>
               {children}
             </main>
             <Footer />

@@ -3,31 +3,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types/product';
 import ButtonBuy from './ButtonBuy';
-import { STORAGE } from '@/constants/api';
 import RecordAction from '../ui/RecordAction';
 import { Endpoint } from '@/types/serverSideRequest';
+import { getImageSrc } from '@/utlis/getImageSrc';
+import { getCategoryBgColor } from '@/utlis/getCategoryBgColor';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const imageSrc = product.image.startsWith('images')
-    ? `${STORAGE}/${product.image}`
-    : product.image;
-
-  const bgColor =
-    product.category.name === 'newest'
-      ? 'bg-blue-800'
-      : product.category.name === 'regular'
-      ? 'bg-purple-500'
-      : 'bg-lime-400';
+  const bgColor = getCategoryBgColor(product.category.name);
 
   return (
     <div className='flex flex-col w-full mb-10 shadow-xl rounded-xl'>
       <div className='relative h-52 mb-3 z-auto sm:h-64'>
         <Image
-          src={imageSrc}
+          src={getImageSrc(product.image)}
           alt={product.title}
           fill
           className='rounded-tl-xl rounded-tr-xl z-auto'

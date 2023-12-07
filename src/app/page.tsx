@@ -3,6 +3,8 @@ import { CategoryName, GetProductsByPageData } from '@/types/product';
 import ButtonBuy from '@/components/product/ButtonBuy';
 import { getRecordsByPageAction } from '@/actions/actions';
 import { Endpoint } from '@/types/serverSideRequest';
+import { getImageSrc } from '@/utlis/getImageSrc';
+import { getCategoryBgColor } from '@/utlis/getCategoryBgColor';
 
 const HomePage = async () => {
   const newestProducts: GetProductsByPageData = await getRecordsByPageAction(
@@ -26,11 +28,7 @@ const HomePage = async () => {
               className='w-full h- bg-base-100 shadow-xl rounded-xl xs:w-96'
             >
               <Image
-                src={
-                  product.image.startsWith('images')
-                    ? `http://127.0.0.1:8000/storage/${product.image}`
-                    : product.image
-                }
+                src={getImageSrc(product.image)}
                 alt={product.title}
                 width={600}
                 height={500}
@@ -42,13 +40,9 @@ const HomePage = async () => {
                     {product.title}
                   </h2>
                   <div
-                    className={`${
-                      product.category.name === 'newest'
-                        ? 'bg-blue-800'
-                        : product.category.name === 'regular'
-                        ? 'bg-purple-500'
-                        : 'bg-lime-400'
-                    }  rounded-md p-2 text-white`}
+                    className={`${getCategoryBgColor(
+                      product.category.name
+                    )}  rounded-md p-2 text-white`}
                   >
                     <p> {product.category.name}</p>
                   </div>
