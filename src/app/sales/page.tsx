@@ -1,6 +1,6 @@
 import { getAllRecords } from '@/actions/actions';
 import SalesChart from '@/components/sales/salesChart';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import React from 'react';
 
 const SalesPage = async () => {

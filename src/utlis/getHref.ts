@@ -1,4 +1,4 @@
-import { Endpoint, GetRecordsByPageParams } from '@/types/serverSideRequest';
+import { Endpoint, GetRecordsByPageParams } from '@/types/action';
 
 export const getHref = (
   endpoint: Endpoint,

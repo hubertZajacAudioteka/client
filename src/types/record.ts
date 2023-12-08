@@ -1,4 +1,4 @@
-import { Endpoint } from './serverSideRequest';
+import { Endpoint } from './action';
 
 export interface DeleteRecordResponse {
   isSuccess: boolean;

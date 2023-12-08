@@ -1,7 +1,7 @@
 import { getRecordById } from '@/actions/actions';
 import EditOrderCard from '@/components/order/EditOrderCard';
 import { RootState } from '@/store';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import React from 'react';
 
 const EditOrderPage = async ({

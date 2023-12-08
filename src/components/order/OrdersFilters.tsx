@@ -1,13 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-  Endpoint,
-  GetOrdersByPageParams,
-  SortDirection,
-} from '@/types/serverSideRequest';
+import { Endpoint, GetOrdersByPageParams, SortDirection } from '@/types/action';
 import { getSortParamTitle } from '@/utlis/getSortParamTitle';
 import { getHref } from '@/utlis/getHref';
-import { SortParamOrder } from '../../types/serverSideRequest';
+import { SortParamOrder } from '../../types/action';
 import { MdExpandMore } from 'react-icons/md';
 import { FiSearch } from 'react-icons/fi';
 import { redirect } from 'next/navigation';

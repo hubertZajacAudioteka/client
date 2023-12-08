@@ -8,7 +8,7 @@ import {
   GetProductsByPageParams,
   SortDirection,
   SortParamProduct,
-} from '@/types/serverSideRequest';
+} from '@/types/action';
 import { getHref } from '@/utlis/getHref';
 import { CategoryName } from '@/types/product';
 import { getClassnamesForFilter } from '@/utlis/getClassnamesForFilter';

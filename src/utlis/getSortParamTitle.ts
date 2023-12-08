@@ -3,7 +3,7 @@ import {
   SortDirection,
   SortParamOrder,
   SortParamUser,
-} from '../types/serverSideRequest';
+} from '../types/action';
 
 export const getSortParamTitle = (
   getRecordsByPageParams: GetRecordsByPageParams

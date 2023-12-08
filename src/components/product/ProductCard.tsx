@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Product } from '@/types/product';
 import ButtonBuy from './ButtonBuy';
 import RecordAction from '../ui/RecordAction';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import { getImageSrc } from '@/utlis/getImageSrc';
 import { getCategoryBgColor } from '@/utlis/getCategoryBgColor';
 

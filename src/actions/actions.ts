@@ -5,9 +5,9 @@ import {
   EndpointDataByPageMap,
   EndpointDataSingleRecordMap,
   GetRecordsByPageParams,
-} from '@/types/serverSideRequest';
+} from '@/types/action';
 import { getToken } from '@/utlis/getToken';
-import { EndpointDataRecordsMap } from '../types/serverSideRequest';
+import { EndpointDataRecordsMap } from '../types/action';
 
 export const getRecordsByPageAction = async <
   T extends keyof EndpointDataByPageMap

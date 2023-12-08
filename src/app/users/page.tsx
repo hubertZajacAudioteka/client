@@ -3,7 +3,7 @@ import ButtonAddNew from '@/components/ui/ButtonAddNew';
 import Pagination from '@/components/ui/Pagination';
 import RecordAction from '@/components/ui/RecordAction';
 import UsersFilters from '@/components/user/UserFilters';
-import { Endpoint, GetUsersByPageParams } from '@/types/serverSideRequest';
+import { Endpoint, GetUsersByPageParams } from '@/types/action';
 import React from 'react';
 
 const UsersPage = async ({

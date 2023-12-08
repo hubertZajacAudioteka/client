@@ -1,5 +1,5 @@
 import { Filter, FilterParam, FilterType } from '@/types/filter';
-import { GetRecordsByPageParams } from '@/types/serverSideRequest';
+import { GetRecordsByPageParams } from '@/types/action';
 
 export const getClassnamesForFilter = (
   filter: Filter,

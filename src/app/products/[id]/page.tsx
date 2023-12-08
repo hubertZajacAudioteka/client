@@ -1,5 +1,5 @@
 import { getRecordById } from '@/actions/actions';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import SingleProduct from '@/components/product/SingleProduct';
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {

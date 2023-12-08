@@ -1,6 +1,6 @@
 import { getAllRecords, getRecordById } from '@/actions/actions';
 import FormEditProduct from '@/components/product/FormEditProduct';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 
 const EditProductPage = async ({
   params,

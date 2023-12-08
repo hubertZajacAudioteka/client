@@ -1,7 +1,7 @@
 import { formatDate } from '@/utlis/formatDate';
 import Pagination from '@/components/ui/Pagination';
 import { getRecordsByPageAction } from '@/actions/actions';
-import { Endpoint, GetOrdersByPageParams } from '@/types/serverSideRequest';
+import { Endpoint, GetOrdersByPageParams } from '@/types/action';
 import OrdersFilters from '@/components/order/OrdersFilters';
 import RecordAction from '@/components/ui/RecordAction';
 

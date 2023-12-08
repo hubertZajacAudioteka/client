@@ -10,7 +10,7 @@ import {
 } from '@/store/slices/confirmDialogSlice';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { FaTrash } from 'react-icons/fa';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import { BsFillEyeFill } from 'react-icons/bs';
 
 interface RecordActionProps {

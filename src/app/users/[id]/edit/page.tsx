@@ -1,6 +1,6 @@
 import { getAllRecords, getRecordById } from '@/actions/actions';
 import FormEditUser from '@/components/user/FormEditUser';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import React from 'react';
 
 const UserEditPage = async ({

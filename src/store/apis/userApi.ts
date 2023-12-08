@@ -59,14 +59,6 @@ export const userApi = createApi({
           credentials: 'include',
         }),
       }),
-      deleteUser: builder.mutation<DeleteUserResponse, string>({
-        query: (id) => ({
-          url: `/users/${id}`,
-          method: 'DELETE',
-          credentials: 'include',
-        }),
-        invalidatesTags: () => ['User'],
-      }),
     };
   },
 });
@@ -77,5 +69,4 @@ export const {
   useLogoutMutation,
   useAddUserMutation,
   useEditUserMutation,
-  useDeleteUserMutation,
 } = userApi;

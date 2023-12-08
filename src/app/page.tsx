@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { CategoryName, GetProductsByPageData } from '@/types/product';
 import ButtonBuy from '@/components/product/ButtonBuy';
 import { getRecordsByPageAction } from '@/actions/actions';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import { getImageSrc } from '@/utlis/getImageSrc';
 import { getCategoryBgColor } from '@/utlis/getCategoryBgColor';
 

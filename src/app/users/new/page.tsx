@@ -1,6 +1,6 @@
 import { getAllRecords } from '@/actions/actions';
 import FormAddUser from '@/components/user/FormAddUser';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import React from 'react';
 
 const AddNewUserPage = async () => {

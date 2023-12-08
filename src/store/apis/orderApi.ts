@@ -25,14 +25,6 @@ export const orderApi = createApi({
           credentials: 'include',
         }),
       }),
-      deleteOrder: builder.mutation<DeleteOrderResponse, string>({
-        query: (id) => ({
-          url: `/orders/${id}`,
-          method: 'DELETE',
-          credentials: 'include',
-        }),
-        invalidatesTags: ['Order'],
-      }),
       fetchSecretKey: builder.mutation<FetchClientResponse, AddOrderValues>({
         query: (addOrderValues) => ({
           url: `/orders/process`,
@@ -62,5 +54,4 @@ export const {
   useAddOrderMutation,
   useFetchSecretKeyMutation,
   useEditOrderMutation,
-  useDeleteOrderMutation,
 } = orderApi;

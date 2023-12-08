@@ -1,7 +1,7 @@
 import { Category } from '@/types/product';
 import FormAddProduct from '@/components/product/FormAddProduct';
 import { getAllRecords } from '@/actions/actions';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 
 const AddNewProductPage = async () => {
   const categories = await getAllRecords(Endpoint.Categories);

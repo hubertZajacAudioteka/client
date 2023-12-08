@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import Link from 'next/link';
 import { FaPlus } from 'react-icons/fa6';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 
 interface ButtonAddNewProps {
   endpoint: Endpoint;

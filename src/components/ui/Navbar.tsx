@@ -9,7 +9,7 @@ import { useLogoutMutation } from '@/store/apis/userApi';
 import { logout } from '@/store/slices/userSlice';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import { FaShopify } from 'react-icons/fa';
 
 const Navbar = () => {

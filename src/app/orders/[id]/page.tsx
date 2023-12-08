@@ -1,7 +1,7 @@
 import { getRecordById } from '@/actions/actions';
 import ProductCard from '@/components/product/ProductCard';
 import SingleProduct from '@/components/product/SingleProduct';
-import { Endpoint } from '@/types/serverSideRequest';
+import { Endpoint } from '@/types/action';
 import { formatDate } from '@/utlis/formatDate';
 import Image from 'next/image';
 
