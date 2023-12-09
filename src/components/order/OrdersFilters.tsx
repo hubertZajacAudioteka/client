@@ -26,7 +26,7 @@ const OrdersFilters = ({ searchParams }: OrdersFiltersProps) => {
     <div className='flex flex-col items-center mb-2 md:flex-row md:justify-between md:mb-10'>
       <form
         action={searchRecords}
-        className='flex items-center border border-gray-300 p-1'
+        className='flex items-center border border-gray-300 p-1 w-[250px]'
       >
         <input
           className='border border-gray-300'

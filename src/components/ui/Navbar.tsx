@@ -18,6 +18,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [logoutUser] = useLogoutMutation();
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser);
+  const hasUserEmployeePrivileges =
+    loggedUser && loggedUser.role?.name !== 'client';
   const itemsQuantity = useSelector(
     (state: RootState) => state.createOrder.itemsQuantity
   );
@@ -41,6 +43,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     await logoutUser();
     dispatch(logout());
+    router.push('/');
   };
 
   const handleLinkClick = () => {
@@ -57,21 +60,23 @@ const Navbar = () => {
             <FaShopify size={45} />
           </Link>
         </div>
-        {loggedUser && (
-          <div className='flex flex-col items-center justify-center gap-1 w-full lg:flex-1'>
+
+        <div className='flex flex-col items-center justify-center gap-1 w-full lg:flex-1'>
+          {loggedUser && (
             <p>
               {loggedUser.first_name} {loggedUser.last_name}
             </p>
-            <Link href={'/orders/new'}>
-              <div className='relative cursor-pointer'>
-                <AiOutlineShoppingCart size={20} />
-                <span className='absolute bottom-2 left-4 text-green-400 font-semibold'>
-                  {itemsQuantity}
-                </span>
-              </div>
-            </Link>
-          </div>
-        )}
+          )}
+          <Link href={'/orders/new'}>
+            <div className='relative cursor-pointer'>
+              <AiOutlineShoppingCart size={20} />
+              <span className='absolute bottom-2 left-4 text-green-400 font-semibold'>
+                {itemsQuantity}
+              </span>
+            </div>
+          </Link>
+        </div>
+
         <div className='cursor-pointer text-white lg:hidden'>
           {!isOpen ? (
             <BiMenuAltLeft size={30} onClick={() => setIsOpen(true)} />
@@ -98,30 +103,36 @@ const Navbar = () => {
                 Products
               </Link>
             </li>
-            <li className='hover:text-red-200'>
-              <Link
-                onClick={handleLinkClick}
-                href={`/${Endpoint.Orders}?page=1`}
-              >
-                Orders
-              </Link>
-            </li>
-            <li className='hover:text-red-200'>
-              <Link
-                onClick={handleLinkClick}
-                href={`/${Endpoint.Users}?page=1`}
-              >
-                Users
-              </Link>
-            </li>
-            <li className='hover:text-red-200'>
-              <Link
-                onClick={handleLinkClick}
-                href={`/${Endpoint.Sales}?page=1`}
-              >
-                Sales
-              </Link>
-            </li>
+            {loggedUser && (
+              <li className='hover:text-red-200'>
+                <Link
+                  onClick={handleLinkClick}
+                  href={`/${Endpoint.Orders}?page=1`}
+                >
+                  Orders
+                </Link>
+              </li>
+            )}
+            {hasUserEmployeePrivileges && (
+              <li className='hover:text-red-200'>
+                <Link
+                  onClick={handleLinkClick}
+                  href={`/${Endpoint.Users}?page=1`}
+                >
+                  Users
+                </Link>
+              </li>
+            )}
+            {hasUserEmployeePrivileges && (
+              <li className='hover:text-red-200'>
+                <Link
+                  onClick={handleLinkClick}
+                  href={`/${Endpoint.Sales}?page=1`}
+                >
+                  Sales
+                </Link>
+              </li>
+            )}
             {loggedUser ? (
               <li>
                 <button

@@ -9,7 +9,6 @@ import {
   UserRegisterResponse,
   UserFormAdd,
   UserFormEdit,
-  DeleteUserResponse,
 } from '@/types/user';
 
 export const userApi = createApi({

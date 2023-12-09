@@ -11,6 +11,10 @@ const NewOrderPage = () => {
     (state: RootState) => state.createOrder.orderedProducts
   );
   const orderValue = useSelector((state: RootState) => state.createOrder.value);
+  const isUserLogIn = useSelector((state: RootState) => state.user.loggedUser);
+  const url = isUserLogIn
+    ? '/orders/checkout'
+    : '/login?redirect=/orders/checkout';
 
   return (
     <div className='max-w-xl mx-auto'>
@@ -20,7 +24,7 @@ const NewOrderPage = () => {
           {orderValue.toFixed(2)}€
         </h2>
         <button
-          onClick={() => router.push('/orders/checkout')}
+          onClick={() => router.push(url)}
           className='bg-yellow-500 py-2 px-4 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'
         >
           Checkout

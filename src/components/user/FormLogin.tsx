@@ -9,10 +9,14 @@ import { UserFormLogin } from '@/types/user';
 import { useLoginMutation } from '@/store/apis/userApi';
 import { setLoggedUser } from '@/store/slices/userSlice';
 import SpinnerBtn from '../ui/SpinnerBtn';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const FormLogin = () => {
   const [login, { error, isError, isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect') ?? '/';
 
   const initialValues: UserFormLogin = {
     email: '',
@@ -28,6 +32,7 @@ const FormLogin = () => {
     const res = await login(values);
     if ('data' in res) {
       dispatch(setLoggedUser(res.data.user));
+      router.push(redirect);
     }
   };
 
@@ -85,7 +90,7 @@ const FormLogin = () => {
               onBlur={handleBlur}
               className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
             />
-            <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg'>
+            <button className='bg-yellow-500 w-full py-2 rounded-md hover:bg-yellow-800 transition-all duration-500 text-white mb-2 sm:text-lg relative'>
               Login
               {isLoading && <SpinnerBtn />}
             </button>
