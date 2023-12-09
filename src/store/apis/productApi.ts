@@ -1,11 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL_CLIENT } from '@/constants/api';
-import {
-  DeleteProductResponse,
-  FormAddProduct,
-  FormEditProduct,
-  Product,
-} from '@/types/product';
+import { FormAddProduct, FormEditProduct, Product } from '@/types/product';
+import { Endpoint } from '@/types/action';
 
 export const productApi = createApi({
   reducerPath: 'productApi',
@@ -15,6 +11,18 @@ export const productApi = createApi({
   tagTypes: ['Product'],
   endpoints(builder) {
     return {
+      getProductsByName: builder.query<Product[], { search: string }>({
+        query: (arg) => {
+          const { search } = arg;
+          return {
+            url: `/${Endpoint.Products}`,
+            method: 'GET',
+            params: { search },
+            credentials: 'include',
+          };
+        },
+        providesTags: ['Product'],
+      }),
       addProduct: builder.mutation<Product, FormAddProduct>({
         query: (formAddProduct) => {
           const formData = new FormData();
@@ -27,7 +35,7 @@ export const productApi = createApi({
           }
 
           return {
-            url: '/products',
+            url: `/${Endpoint.Products}`,
             method: 'POST',
             body: formData,
             credentials: 'include',
@@ -48,7 +56,7 @@ export const productApi = createApi({
           }
 
           return {
-            url: `/products/${id}`,
+            url: `/${Endpoint.Products}/${id}`,
             method: 'POST',
             body: formData,
             credentials: 'include',
@@ -60,4 +68,8 @@ export const productApi = createApi({
   },
 });
 
-export const { useAddProductMutation, useEditProductMutation } = productApi;
+export const {
+  useAddProductMutation,
+  useEditProductMutation,
+  useGetProductsByNameQuery,
+} = productApi;

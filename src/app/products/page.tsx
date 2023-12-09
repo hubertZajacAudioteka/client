@@ -13,6 +13,7 @@ import { getHref } from '@/utlis/getHref';
 import { CategoryName } from '@/types/product';
 import { getClassnamesForFilter } from '@/utlis/getClassnamesForFilter';
 import { FilterType } from '@/types/filter';
+import Search from '@/components/product/Search';
 
 const ProductsPage = async (params: {
   searchParams: GetProductsByPageParams;
@@ -34,6 +35,7 @@ const ProductsPage = async (params: {
 
   return (
     <>
+      <Search />
       <div className='flex gap-4'>
         <div className='flex flex-col fixed top-1/5 right-2 w-[28%] md:pl-10 2xl:pl-0 max-w-xs 2xl:right-1/2 2xl:translate-x-[750px]'>
           <ButtonAddNew endpoint={Endpoint.Products} />
