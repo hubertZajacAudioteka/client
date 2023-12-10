@@ -15,6 +15,7 @@ interface SingleProductProps {
 
 const SingleProduct = ({ product, isReadOnly }: SingleProductProps) => {
   const bgColor = getCategoryBgColor(product.category.name);
+  console.log('BG', bgColor);
 
   return (
     <div className='max-w-xl mx-auto'>

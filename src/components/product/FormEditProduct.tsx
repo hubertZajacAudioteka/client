@@ -143,7 +143,7 @@ const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
               )}
             </div>
             <label className='flex flex-col items-center justify-center w-full h-42 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 mb-4 sm:h-64'>
-              <div className='flex flex-col items-center justify-center pt-5 pb-6'>
+              <div className='flex flex-col items-center justify-center pt-5 pb-6 w-full'>
                 <svg
                   className='w-8 h-8 mb-4 text-gray-500 dark:text-gray-400'
                   aria-hidden='true'
@@ -161,7 +161,11 @@ const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
                 </svg>
                 <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
                   {uploadedFileName ? (
-                    <span className='font-semibold'>{uploadedFileName}</span>
+                    <span className='font-semibold block text-center'>
+                      {uploadedFileName.length > 60
+                        ? `${uploadedFileName.slice(0, 60)}...`
+                        : uploadedFileName}
+                    </span>
                   ) : (
                     <>
                       <span>
@@ -192,13 +196,13 @@ const FormEditProduct = ({ categories, product }: FormEditProductProps) => {
                 </p>
               )}
             </div>
-            <input
+            <textarea
+              rows={4}
               name='description'
-              type='text'
               value={values.description}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 resize-y'
             />
             <div className='flex justify-between items-center mb-3'>
               <label className='text-sm sm:text-lg'>Price</label>

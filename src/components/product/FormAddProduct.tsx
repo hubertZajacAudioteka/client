@@ -16,9 +16,9 @@ interface FormAddProductProps {
 
 const FormAddProduct = ({ categories }: FormAddProductProps) => {
   const router = useRouter();
-  const [addProduct, { isError, error, isLoading }] = useAddProductMutation();
   const dispatch = useDispatch();
   const [uploadedFileName, setUploadedFileName] = useState<string>('');
+  const [addProduct, { isError, error, isLoading }] = useAddProductMutation();
 
   const initialValues: FormAddProduct = {
     title: '',
@@ -150,7 +150,11 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
                 </svg>
                 <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
                   {uploadedFileName ? (
-                    <span className='font-semibold'>{uploadedFileName}</span>
+                    <span className='font-semibold'>
+                      {uploadedFileName.length > 60
+                        ? `${uploadedFileName.slice(0, 60)}...`
+                        : uploadedFileName}
+                    </span>
                   ) : (
                     <>
                       <span>
@@ -181,13 +185,13 @@ const FormAddProduct = ({ categories }: FormAddProductProps) => {
                 </p>
               )}
             </div>
-            <input
+            <textarea
               name='description'
-              type='text'
+              rows={4}
               value={values.description}
               onChange={handleChange}
               onBlur={handleBlur}
-              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg'
+              className='border-b border-solid border-x-0 border-gray-400 border-t-0 w-full mb-10 p-2 sm:text-lg resize-y'
             />
             <div className='flex justify-between items-center mb-3'>
               <label className='text-sm sm:text-lg'>Price</label>

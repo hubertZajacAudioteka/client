@@ -24,11 +24,8 @@ a {
   color: inherit;
 }
 
-input {
-  outline: none;
-  border: none;
-}
-
+input,
+textarea,
 select {
   outline: none;
   border: none;

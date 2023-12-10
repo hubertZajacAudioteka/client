@@ -67,7 +67,7 @@ const Navbar = () => {
               {loggedUser.first_name} {loggedUser.last_name}
             </p>
           )}
-          <Link href={'/orders/new'}>
+          <Link href={`/${Endpoint.Orders}/new`}>
             <div className='relative cursor-pointer'>
               <AiOutlineShoppingCart size={20} />
               <span className='absolute bottom-2 left-4 text-green-400 font-semibold'>

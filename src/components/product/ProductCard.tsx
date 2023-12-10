@@ -43,7 +43,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className='flex justify-between items-center'>
           <Link
             className='text-blue-900 font-semibold text-sm'
-            href={`/products/${product.id}`}
+            href={`/${Endpoint.Products}/${product.id}`}
           >
             View details
           </Link>
