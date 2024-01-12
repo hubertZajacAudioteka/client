@@ -6,6 +6,7 @@ import createOrderReducer from './slices/createOrderSlice';
 import editOrderReducer from './slices/editOrderSlice';
 import popupReducer from './slices/popupSlice';
 import confirmDialogReducer from './slices/confirmDialogSlice';
+import configReducer from './slices/configSlice';
 import {
   persistStore,
   persistReducer,
@@ -25,7 +26,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['user', 'createOrder'],
+  whitelist: ['user', 'createOrder', 'config'],
 };
 
 const rootReducer = combineReducers({
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   editOrder: editOrderReducer,
   popup: popupReducer,
   confirmDialog: confirmDialogReducer,
+  config: configReducer,
   [userApi.reducerPath]: userApi.reducer,
   [orderApi.reducerPath]: orderApi.reducer,
   [productApi.reducerPath]: productApi.reducer,

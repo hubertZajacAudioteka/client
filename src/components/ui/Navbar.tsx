@@ -11,6 +11,7 @@ import { BiMenuAltLeft } from 'react-icons/bi';
 import { AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Endpoint } from '@/types/action';
 import { FaShopify } from 'react-icons/fa';
+import ThemeToggler from './ThemeToggler';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -156,6 +157,7 @@ const Navbar = () => {
               </li>
             )}
           </ul>
+          <ThemeToggler />
         </nav>
       </div>
     </header>

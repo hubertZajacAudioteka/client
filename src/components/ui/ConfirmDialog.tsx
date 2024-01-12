@@ -5,9 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { closeConfirmDialog } from '@/store/slices/confirmDialogSlice';
-import { useDeleteProductMutation } from '@/store/apis/productApi';
-import { useDeleteUserMutation } from '@/store/apis/userApi';
-import { useDeleteOrderMutation } from '@/store/apis/orderApi';
 import { useDeleteRecordMutation } from '@/store/apis/recordApi';
 import SpinnerBtn from './SpinnerBtn';
 

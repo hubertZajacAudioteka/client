@@ -5,6 +5,9 @@ import { getRecordsByPageAction } from '@/actions/actions';
 import { Endpoint } from '@/types/action';
 import { getImageSrc } from '@/utlis/getImageSrc';
 import { getCategoryBgColor } from '@/utlis/getCategoryBgColor';
+import { Lobster } from 'next/font/google';
+
+const lobster = Lobster({ weight: '400', subsets: ['latin'] });
 
 const HomePage = async () => {
   const newestProducts: GetProductsByPageData = await getRecordsByPageAction(
@@ -14,11 +17,14 @@ const HomePage = async () => {
 
   return (
     <section>
-      <div className='flex justify-center items-center max-w-[700px] mx-auto'>
-        <Image src='/home.jpg' width={600} height={300} alt='home' />
-      </div>
+      <h1
+        className={`${lobster.className} text-[50px] text-center text-red-600 max-w-[240px] mx-auto tracking-tighter mb-12 md:text-[65px] md:max-w-[300px] md:mb-20`}
+      >
+        Thank You for Shopping With us!
+        <span className='mt-4 block'>(online)</span>
+      </h1>
       <div>
-        <h2 className='text-center text-2xl font-bold mb-5 lg:text-4xl'>
+        <h2 className='text-center text-2xl font-bold mb-5 lg:text-4xl dark:text-white'>
           Check our newest products
         </h2>
         <div className='flex flex-col gap-5 items-center md:flex-row md:justify-between md:items-start'>
